@@ -54,10 +54,10 @@ class EventsRepositoryImplTest {
         )
 
         val expectedResponseEvents: Response<List<Event>> = Response.success(expectedEventsList)
-        whenever(dataSourceMock.getEvent()).thenReturn(expectedResponseEvents)
+        whenever(dataSourceMock.getEvents()).thenReturn(expectedResponseEvents)
 
         // ACT
-        val actualResponseEvents: Response<List<Event>> = repository.getEvent()
+        val actualResponseEvents: Response<List<Event>> = repository.getEvents()
 
         // ASSERT
         Assert.assertEquals(expectedResponseEvents, actualResponseEvents)
@@ -73,10 +73,10 @@ class EventsRepositoryImplTest {
         )
         val expectedResponseEvents = Response.error<List<Event>>(400, expectedResponseBody)
 
-        whenever(dataSourceMock.getEvent()).thenReturn(expectedResponseEvents)
+        whenever(dataSourceMock.getEvents()).thenReturn(expectedResponseEvents)
 
         // ACT
-        val actualResponseEvents: Response<List<Event>> = repository.getEvent()
+        val actualResponseEvents: Response<List<Event>> = repository.getEvents()
 
         // ASSERT
         Assert.assertEquals(expectedResponseEvents, actualResponseEvents)

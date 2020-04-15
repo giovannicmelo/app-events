@@ -13,7 +13,7 @@ interface EventsApi {
 
     @Headers("Content-Type: application/json")
     @GET("events")
-    suspend fun getEvent(): Response<List<Event>>
+    suspend fun getEvents(): Response<List<Event>>
 
     @Headers("Content-Type: application/json")
     @GET("events/{eventId}")

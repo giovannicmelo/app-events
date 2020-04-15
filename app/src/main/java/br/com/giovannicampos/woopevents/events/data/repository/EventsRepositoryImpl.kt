@@ -8,8 +8,8 @@ import retrofit2.Response
 
 class EventsRepositoryImpl(private val dataSource: EventsDataSource.Remote): EventsRepository {
 
-    override suspend fun getEvent(): Response<List<Event>> {
-        return dataSource.getEvent()
+    override suspend fun getEvents(): Response<List<Event>> {
+        return dataSource.getEvents()
     }
 
     override suspend fun getEventById(eventId: Int): Response<Event> {
