@@ -3,4 +3,20 @@
     <string name="currency_with_space">R$ %s</string>
     <string name="city_and_state">%1$s - %2$s</string>
     <string name="day_and_month">%1$s %2$s</string>
+    <string name="ok">OK</string>
+    <string name="empty_list">Não há eventos a serem exibidos</string>
+    <string name="try_later">Não foi possível carregar os eventos, tente novamente mais tarde.</string>
+    <string name="no_connection">Não há conexão com a internet</string>
+    <string name="check_in">Check-in</string>
+    <string name="address">Endereço</string>
+    <string name="date">Data</string>
+    <string name="description">Descrição</string>
+    <string name="event">Evento</string>
+    <string name="share">Compartilhar</string>
+    <string name="checkin_description">Preencha os campos abaixo para realizar o check-in:</string>
+    <string name="name">Nome</string>
+    <string name="email">E-mail</string>
+    <string name="invalid_name">Campo \'Nome\' é inválido</string>
+    <string name="invalid_email">Campo \'E-mail\' é inválido</string>
+    <string name="check_in_successfully">Check-in realizado com sucesso!</string>
 </resources>

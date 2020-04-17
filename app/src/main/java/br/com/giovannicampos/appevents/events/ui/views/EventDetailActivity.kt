@@ -1,0 +1,178 @@
+package br.com.giovannicampos.appevents.events.ui.views
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import br.com.giovannicampos.appevents.R
+import br.com.giovannicampos.appevents.base.utils.timestampToDateFull
+import br.com.giovannicampos.appevents.databinding.ActivityEventDetailBinding
+import br.com.giovannicampos.appevents.databinding.DialogCheckInBinding
+import br.com.giovannicampos.appevents.events.data.models.Event
+import br.com.giovannicampos.appevents.events.ui.viewmodels.EventDetailsViewModel
+import coil.api.load
+import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class EventDetailActivity : AppCompatActivity() {
+
+    private lateinit var viewBinding: ActivityEventDetailBinding
+    private lateinit var dialogViewBinding: DialogCheckInBinding
+
+    private val viewModel by viewModel<EventDetailsViewModel>()
+
+    private var dialogView: AlertDialog? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewBinding = ActivityEventDetailBinding.inflate(layoutInflater).also { binding ->
+            setContentView(binding.root)
+        }
+
+        setupToolbar(viewBinding.toolbarCollapsing)
+
+        setupObservables()
+        setupListeners()
+        loadEventDetails()
+    }
+
+    private fun setupListeners() {
+        viewBinding.btCheckIn.setOnClickListener { viewModel.openCheckInModal() }
+        viewBinding.btShare.setOnClickListener { viewModel.openShareContentEvent() }
+    }
+
+    private fun loadEventDetails() {
+        if (intent.hasExtra(EventsActivity.EVENT_ID_EXTRA)) {
+            val eventId = intent.getIntExtra(EventsActivity.EVENT_ID_EXTRA, 0)
+            viewModel.getEventById(eventId)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setupToolbar(toolbar: Toolbar) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    private fun setupObservables() {
+        viewModel.command.observe(this, Observer { command ->
+            when (command) {
+                is EventDetailsViewModel.Command.ShowApiErrorMessage -> {
+                    showSnackMessage(getString(R.string.try_later))
+                }
+                is EventDetailsViewModel.Command.ShowEventDetails -> {
+                    subscribeUi(command.event)
+                }
+                is EventDetailsViewModel.Command.ShowExceptionMessage -> {
+                    showSnackMessage(command.message)
+                }
+                is EventDetailsViewModel.Command.ShowNoConnectionMessage -> {
+                    showSnackMessage(getString(R.string.no_connection))
+                }
+                is EventDetailsViewModel.Command.OpenCheckInFormModal -> {
+                    showCheckInModal()
+                }
+                is EventDetailsViewModel.Command.ShareContentEvent -> {
+                    shareContent(viewBinding.tvEventDetailDescription.text.toString())
+                }
+                is EventDetailsViewModel.Command.ValidateCheckIn -> {
+                    if (command.validate) {
+                        showSnackMessage(getString(R.string.check_in_successfully))
+                        dialogView?.dismiss()
+                    }
+                }
+                is EventDetailsViewModel.Command.InvalidateName -> {
+                    dialogViewBinding.etPersonName.error = getString(R.string.invalid_name)
+                }
+                is EventDetailsViewModel.Command.InvalidateEmail -> {
+                    dialogViewBinding.etPersonEmail.error = getString(R.string.invalid_email)
+                }
+                is EventDetailsViewModel.Command.ValidateFields -> {
+                    viewModel.doCheckIn(
+                        dialogViewBinding.etPersonName.text.toString(),
+                        dialogViewBinding.etPersonEmail.text.toString()
+                    )
+                }
+            }
+        })
+
+        viewModel.viewState.observe(this, Observer { viewState ->
+            viewState?.let { render(viewState) }
+        })
+    }
+
+    private fun subscribeUi(event: Event) {
+        viewBinding.run {
+            ivEventDetailsImage.load(event.image) {
+                crossfade(true)
+            }
+            tvEventDetailTitle.text = event.title
+            tvEventDetailDate.text = event.date.timestampToDateFull()
+            tvEventDetailDescription.text = event.description
+        }
+    }
+
+    private fun render(viewState: EventDetailsViewModel.ViewState) {
+        if (viewState.isLoading) {
+            viewBinding.progressCircular.visibility = View.VISIBLE
+            viewBinding.llEventDetailsContent.visibility = View.GONE
+        } else {
+            viewBinding.progressCircular.visibility = View.GONE
+            viewBinding.llEventDetailsContent.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showSnackMessage(message: String) {
+        val snack = Snackbar.make(
+            viewBinding.root,
+            message,
+            Snackbar.LENGTH_INDEFINITE
+        )
+        snack.setAction(getString(R.string.ok)) { snack.dismiss() }.show()
+    }
+
+    private fun shareContent(content: String) {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, content)
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.share)))
+    }
+
+    private fun showCheckInModal() {
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_check_in, null)
+        dialogViewBinding = DialogCheckInBinding.bind(view)
+
+        val viewBindingApplied = dialogViewBinding.apply {
+            btCheckInConfirm.setOnClickListener {
+                viewModel.validateFields(
+                    this.etPersonName.text.toString(),
+                    this.etPersonEmail.text.toString()
+                )
+            }
+        }
+
+        val dialogBuilder = AlertDialog.Builder(this).setView(viewBindingApplied.root)
+        dialogView = dialogBuilder.create()
+        dialogView?.show()
+    }
+}
