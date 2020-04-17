@@ -128,6 +128,7 @@ class EventDetailActivity : AppCompatActivity() {
         viewBinding.run {
             ivEventDetailsImage.load(event.image) {
                 crossfade(true)
+                error(R.drawable.layer_placeholder)
             }
             tvEventDetailTitle.text = event.title
             tvEventDetailDate.text = event.date.timestampToDateFull()

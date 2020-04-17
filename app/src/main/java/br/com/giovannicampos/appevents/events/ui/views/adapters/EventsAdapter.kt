@@ -11,6 +11,7 @@ import br.com.giovannicampos.appevents.base.utils.timestampToYear
 import br.com.giovannicampos.appevents.databinding.ItemEventBinding
 import br.com.giovannicampos.appevents.events.data.models.Event
 import coil.api.load
+import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 
 class EventsAdapter(
@@ -46,10 +47,17 @@ class EventsAdapter(
             val context = viewBinding.root.context
 
             viewBinding.run {
+                ivEventPlaceholder.load(R.drawable.layer_placeholder) {
+                    crossfade(true)
+                    transformations(RoundedCornersTransformation(context.dpToPx(4)))
+                    scale(Scale.FIT)
+                }
+
                 ivEventImage.load(event.image) {
                     crossfade(true)
                     transformations(RoundedCornersTransformation(context.dpToPx(DEFAULT_RADIUS)))
                 }
+
                 tvEventTitle.text = event.title
                 tvEventDay.text = context.getString(
                     R.string.day_and_month,
