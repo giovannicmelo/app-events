@@ -1,4 +1,4 @@
-package br.com.giovannicampos.appevents.events.ui.views
+package br.com.giovannicampos.appevents.events.ui.views.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovannicampos.appevents.R
 import br.com.giovannicampos.appevents.base.utils.timestampToDateFull
 import br.com.giovannicampos.appevents.base.utils.toCurrency
@@ -16,6 +17,8 @@ import br.com.giovannicampos.appevents.databinding.ActivityEventDetailBinding
 import br.com.giovannicampos.appevents.databinding.DialogCheckInBinding
 import br.com.giovannicampos.appevents.events.data.models.Event
 import br.com.giovannicampos.appevents.events.ui.viewmodels.EventDetailsViewModel
+import br.com.giovannicampos.appevents.events.ui.views.adapters.CouponsAdapter
+import br.com.giovannicampos.appevents.events.ui.views.adapters.PeopleAdapter
 import coil.api.load
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -131,7 +134,18 @@ class EventDetailActivity : AppCompatActivity() {
             tvEventDetailDescription.text = event.description
             tvEventDetailPrice.text = getString(R.string.currency_with_space, event.price.toCurrency("#,###.00"))
 
-            rvPeople.adapter = PeopleAdapter(event.listPersons)
+            rvPeople.adapter =
+                PeopleAdapter(
+                    event.listPersons
+                )
+
+            rvCoupons.adapter = CouponsAdapter(event.listCoupons)
+            rvCoupons.layoutManager = LinearLayoutManager(
+                this@EventDetailActivity,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            rvCoupons.setHasFixedSize(true)
         }
     }
 

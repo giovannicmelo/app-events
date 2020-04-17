@@ -1,4 +1,4 @@
-package br.com.giovannicampos.appevents.events.ui.views
+package br.com.giovannicampos.appevents.events.ui.views.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import br.com.giovannicampos.appevents.R
 import br.com.giovannicampos.appevents.base.utils.isConnected
 import br.com.giovannicampos.appevents.databinding.ActivityEventsBinding
 import br.com.giovannicampos.appevents.events.ui.viewmodels.EventsViewModel
+import br.com.giovannicampos.appevents.events.ui.views.adapters.EventsAdapter
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -53,9 +54,12 @@ class EventsActivity : AppCompatActivity() {
                     showSnackMessage(getString(R.string.try_later))
                 }
                 is EventsViewModel.Command.ShowEvents -> {
-                    val adapter = EventsAdapter(command.events) {
-                        goToEventDetails(it.id)
-                    }
+                    val adapter =
+                        EventsAdapter(
+                            command.events
+                        ) {
+                            goToEventDetails(it.id)
+                        }
                     viewBinding.rvEvents.adapter = adapter
                 }
                 is EventsViewModel.Command.ShowExceptionMessage -> {

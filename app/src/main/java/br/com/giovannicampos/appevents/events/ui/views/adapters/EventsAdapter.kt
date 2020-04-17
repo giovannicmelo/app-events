@@ -1,4 +1,4 @@
-package br.com.giovannicampos.appevents.events.ui.views
+package br.com.giovannicampos.appevents.events.ui.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,17 +13,22 @@ import br.com.giovannicampos.appevents.events.data.models.Event
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
 
-private const val DEFAULT_RADIUS = 8
-
 class EventsAdapter(
     private val events: List<Event>,
     private val actionItem: (Event) -> Unit
 ) : RecyclerView.Adapter<EventsAdapter.EventsViewHolder>() {
 
+    companion object {
+        private const val DEFAULT_RADIUS = 8
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val viewBinding = ItemEventBinding.inflate(inflater, parent, false)
-        return EventsViewHolder(viewBinding, actionItem)
+        return EventsViewHolder(
+            viewBinding,
+            actionItem
+        )
     }
 
     override fun getItemCount(): Int = events.size

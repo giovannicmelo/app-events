@@ -1,4 +1,4 @@
-package br.com.giovannicampos.appevents.events.ui.views
+package br.com.giovannicampos.appevents.events.ui.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +14,9 @@ class PeopleAdapter(private val people: List<Event.Person>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val viewBinding = ItemPersonBinding.inflate(inflater, parent, false)
-        return PeopleViewHolder(viewBinding)
+        return PeopleViewHolder(
+            viewBinding
+        )
     }
 
     override fun getItemCount(): Int = people.size
