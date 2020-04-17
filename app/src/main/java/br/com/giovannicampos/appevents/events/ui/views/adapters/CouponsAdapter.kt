@@ -27,6 +27,7 @@ class CouponsAdapter(private val coupons: List<Event.Coupon>)
 
     class CouponsViewHolder(private val viewBinding: ItemCouponBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
+        @SuppressLint("StringFormatInvalid")
         fun bind(coupon: Event.Coupon) {
             val context = viewBinding.root.context
             viewBinding.tvCouponDiscount.text = context.getString(R.string.discount, coupon.discount)

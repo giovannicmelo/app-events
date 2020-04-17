@@ -69,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="18sp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             tools:text="28 Nov" />
@@ -103,6 +104,7 @@
             android:textAlignment="viewEnd"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textColor="@android:color/white"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Blue Men Group" />
 
@@ -111,10 +113,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:text="Paris, França" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

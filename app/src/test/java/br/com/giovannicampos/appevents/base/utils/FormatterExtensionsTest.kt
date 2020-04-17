@@ -61,7 +61,7 @@ class FormatterExtensionsTest {
     @Test
     fun `Timestamp to date full, when it is passed a timestamp, then returns a date formatted`() {
         // ARRANGE
-        val expectedYear = "20 AGO 2018"
+        val expectedYear = "20 de agosto de 2018"
         val expectedTimestamp = 1534784400000
 
         // ACT

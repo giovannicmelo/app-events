@@ -1,10 +1,12 @@
 package br.com.giovannicampos.appevents.events.ui.views.adapters
 
+import android.location.Address
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovannicampos.appevents.R
 import br.com.giovannicampos.appevents.base.utils.dpToPx
+import br.com.giovannicampos.appevents.base.utils.getAddresses
 import br.com.giovannicampos.appevents.base.utils.timestampToDayOfMonth
 import br.com.giovannicampos.appevents.base.utils.timestampToShortMonth
 import br.com.giovannicampos.appevents.base.utils.timestampToYear
@@ -20,7 +22,8 @@ class EventsAdapter(
 ) : RecyclerView.Adapter<EventsAdapter.EventsViewHolder>() {
 
     companion object {
-        private const val DEFAULT_RADIUS = 8
+        private const val DEFAULT_RADIUS_IMAGE = 8
+        private const val DEFAULT_RADIUS_PLACEHOLDER = 4
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
@@ -49,13 +52,13 @@ class EventsAdapter(
             viewBinding.run {
                 ivEventPlaceholder.load(R.drawable.layer_placeholder) {
                     crossfade(true)
-                    transformations(RoundedCornersTransformation(context.dpToPx(4)))
+                    transformations(RoundedCornersTransformation(context.dpToPx(DEFAULT_RADIUS_PLACEHOLDER)))
                     scale(Scale.FIT)
                 }
 
                 ivEventImage.load(event.image) {
                     crossfade(true)
-                    transformations(RoundedCornersTransformation(context.dpToPx(DEFAULT_RADIUS)))
+                    transformations(RoundedCornersTransformation(context.dpToPx(DEFAULT_RADIUS_IMAGE)))
                 }
 
                 tvEventTitle.text = event.title
@@ -68,6 +71,9 @@ class EventsAdapter(
                 vEvent.setOnClickListener {
                     actionItem.invoke(event)
                 }
+
+                val addresses: List<Address> = context.getAddresses(event.latitude, event.longitude)
+                tvEventCity.text = context.getString(R.string.city_and_country, addresses[0].subAdminArea, addresses[0].countryName)
             }
         }
     }

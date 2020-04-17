@@ -1,6 +1,8 @@
 package br.com.giovannicampos.appevents.events.ui.views.activities
 
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovannicampos.appevents.R
+import br.com.giovannicampos.appevents.base.utils.getAddresses
 import br.com.giovannicampos.appevents.base.utils.timestampToDateFull
 import br.com.giovannicampos.appevents.base.utils.toCurrency
 import br.com.giovannicampos.appevents.databinding.ActivityEventDetailBinding
@@ -20,8 +23,13 @@ import br.com.giovannicampos.appevents.events.ui.viewmodels.EventDetailsViewMode
 import br.com.giovannicampos.appevents.events.ui.views.adapters.CouponsAdapter
 import br.com.giovannicampos.appevents.events.ui.views.adapters.PeopleAdapter
 import coil.api.load
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
 
 class EventDetailActivity : AppCompatActivity() {
 
@@ -147,7 +155,12 @@ class EventDetailActivity : AppCompatActivity() {
                 false
             )
             rvCoupons.setHasFixedSize(true)
+
+            val addresses: List<Address> = this@EventDetailActivity.getAddresses(event.latitude, event.longitude)
+            tvEventDetailAddress.text = addresses[0].getAddressLine(0)
         }
+
+        setupMaps(event)
     }
 
     private fun render(viewState: EventDetailsViewModel.ViewState) {
@@ -194,5 +207,21 @@ class EventDetailActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this).setView(viewBindingApplied.root)
         dialogView = dialogBuilder.create()
         dialogView?.show()
+    }
+
+    private fun setupMaps(event: Event) {
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment
+
+        mapFragment.getMapAsync { map ->
+            val location = LatLng(event.latitude, event.longitude)
+
+            map.addMarker(
+                MarkerOptions().position(location)
+                    .title(event.title)
+//                    .snippet(getString(R.string.neighborhood, addresses[0].subLocality))
+            )
+            map.animateCamera(CameraUpdateFactory.zoomTo(15.0f))
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15.0f))
+        }
     }
 }

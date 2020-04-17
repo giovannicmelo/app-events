@@ -49,8 +49,8 @@ fun Long.timestampToYear(): String {
 fun Long.timestampToDateFull(): String {
     return try {
         val locale = Locale("pt", "BR")
-        val formatter = SimpleDateFormat("dd MMM yyyy", locale)
-        formatter.format(Date(this)).toUpperCase(locale)
+        val formatter = SimpleDateFormat("dd 'de' MMMM 'de' yyyy", locale)
+        formatter.format(Date(this)).toLowerCase(locale)
     } catch (e: ParseException) {
         ""
     }

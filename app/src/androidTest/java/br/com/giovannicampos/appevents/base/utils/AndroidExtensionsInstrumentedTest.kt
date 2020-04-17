@@ -42,4 +42,18 @@ class AndroidExtensionsInstrumentedTest {
         // ASSERT
         Assert.assertFalse(isConnected)
     }
+
+    @Test
+    fun getAddresses_getListOfAddressesByLatLng() {
+        // ASSERT
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val latitude = -51.2146267
+        val longitude = -30.0392981
+
+        // ACT
+        val addresses = appContext.getAddresses(latitude, longitude)
+
+        // ASSERT
+        Assert.assertTrue(addresses.isNotEmpty())
+    }
 }
