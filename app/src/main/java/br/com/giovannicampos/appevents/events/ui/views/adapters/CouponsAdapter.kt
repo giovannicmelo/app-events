@@ -5,10 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovannicampos.appevents.R
 import br.com.giovannicampos.appevents.databinding.ItemCouponBinding
-import br.com.giovannicampos.appevents.databinding.ItemPersonBinding
 import br.com.giovannicampos.appevents.events.data.models.Event
-import coil.api.load
-import coil.transform.CircleCropTransformation
 
 class CouponsAdapter(private val coupons: List<Event.Coupon>)
     : RecyclerView.Adapter<CouponsAdapter.CouponsViewHolder>() {

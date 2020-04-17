@@ -84,7 +84,6 @@ class EventDetailsViewModel(
                 } else {
                     command.postValue(Command.ShowApiErrorMessage)
                 }
-
             } catch (e: Exception) {
                 command.postValue(Command.ShowExceptionMessage(e.localizedMessage!!))
             }
