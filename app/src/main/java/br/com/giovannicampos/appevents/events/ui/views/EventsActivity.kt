@@ -54,7 +54,7 @@ class EventsActivity : AppCompatActivity() {
                 }
                 is EventsViewModel.Command.ShowEvents -> {
                     val adapter = EventsAdapter(command.events) {
-                        goToEventDetails(it)
+                        goToEventDetails(it.id)
                     }
                     viewBinding.rvEvents.adapter = adapter
                 }
@@ -72,7 +72,7 @@ class EventsActivity : AppCompatActivity() {
         })
     }
 
-    private fun goToEventDetails(eventId: Int) {
+    private fun goToEventDetails(eventId: String) {
         val newIntent = Intent(this, EventDetailActivity::class.java).also {
             it.putExtra(EVENT_ID_EXTRA, eventId)
         }

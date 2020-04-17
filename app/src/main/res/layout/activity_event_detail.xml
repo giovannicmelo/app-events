@@ -186,11 +186,56 @@
                         android:textColor="@android:color/darker_gray"
                         tools:text="Rua ABC, 123 - Bairro Teste - Porto Alegre-RS" />
 
-<!--                    <fragment
-                        android:id="@+id/fragmentMap"
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragment_map"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp" />-->
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textAllCaps="true"
+                        android:text="@string/participants"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_people"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusableInTouchMode="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_person" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textAllCaps="true"
+                        android:text="@string/price"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_event_detail_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textColor="@android:color/darker_gray"
+                        tools:text="R$ 10,00" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textAllCaps="true"
+                        android:text="@string/coupons"/>
+
+
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <ProgressBar

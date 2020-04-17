@@ -19,4 +19,7 @@
     <string name="invalid_name">Campo \'Nome\' é inválido</string>
     <string name="invalid_email">Campo \'E-mail\' é inválido</string>
     <string name="check_in_successfully">Check-in realizado com sucesso!</string>
+    <string name="participants">Participantes</string>
+    <string name="price">Valor</string>
+    <string name="coupons">Cupons</string>
 </resources>

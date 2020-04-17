@@ -17,7 +17,7 @@ private const val DEFAULT_RADIUS = 8
 
 class EventsAdapter(
     private val events: List<Event>,
-    private val actionItem: (Int) -> Unit
+    private val actionItem: (Event) -> Unit
 ) : RecyclerView.Adapter<EventsAdapter.EventsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
@@ -34,7 +34,7 @@ class EventsAdapter(
 
     class EventsViewHolder(
         private val viewBinding: ItemEventBinding,
-        private val actionItem: (Int) -> Unit
+        private val actionItem: (Event) -> Unit
     ) : RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(event: Event) {
@@ -53,7 +53,7 @@ class EventsAdapter(
                 )
                 tvEventYear.text = event.date.timestampToYear()
                 vEvent.setOnClickListener {
-                    actionItem.invoke(event.id)
+                    actionItem.invoke(event)
                 }
             }
         }

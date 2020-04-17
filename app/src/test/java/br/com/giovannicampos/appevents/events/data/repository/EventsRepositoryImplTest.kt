@@ -31,17 +31,17 @@ class EventsRepositoryImplTest {
 
         // ARRANGE
         val expectedPerson = Event.Person(
-            id = 1,
+            id = "1",
             name = "Test Person"
         )
         val expectedCoupon = Event.Coupon(
-            id = 1,
-            eventId = 1,
+            id = "1",
+            eventId = "1",
             discount = 10
         )
         val expectedEventsList = listOf(
             Event(
-                id = 1,
+                id = "1",
                 date = 1534784400000,
                 title = "Event 1",
                 description = "Test event 1",
@@ -66,7 +66,7 @@ class EventsRepositoryImplTest {
     @Test
     fun `Get event, when it is requested to retrieve all events, then returns an api error message`() = runBlocking {
         // ARRANGE
-        val expectedResponseError = ApiResponse("400")
+        val expectedResponseError = "Bad request"
         val expectedResponseBody: ResponseBody = ResponseBody.create(
             MediaType.parse("application/json; charset=utf-8"),
             Gson().toJson(expectedResponseError)
@@ -85,14 +85,14 @@ class EventsRepositoryImplTest {
     @Test
     fun `Get event by id, when it is passed an event id, then returns an event`() = runBlocking {
         // ARRANGE
-        val expectedEventId = 1
+        val expectedEventId = "1"
         val expectedPerson = Event.Person(
-            id = 1,
+            id = "1",
             name = "Test Person"
         )
         val expectedCoupon = Event.Coupon(
-            id = 1,
-            eventId = 1,
+            id = "1",
+            eventId = expectedEventId,
             discount = 10
         )
         val expectedEvent = Event(
@@ -120,8 +120,8 @@ class EventsRepositoryImplTest {
     @Test
     fun `Get event by id, when it is passed an event id, then returns an api error message`() = runBlocking {
         // ARRANGE
-        val expectedEventId = 0
-        val expectedResponseError = ApiResponse("400")
+        val expectedEventId = ""
+        val expectedResponseError = "Bad request"
         val expectedResponseBody: ResponseBody = ResponseBody.create(
             MediaType.parse("application/json; charset=utf-8"),
             Gson().toJson(expectedResponseError)
@@ -140,7 +140,7 @@ class EventsRepositoryImplTest {
     fun `Post check in, when it is passed a person, then returns a status that was successful`() = runBlocking {
         // ARRANGE
         val expectedPerson = Event.Person(
-            id = 1,
+            id = "1",
             name = "Test Person",
             email = "person@mail.to.me"
         )
@@ -159,7 +159,7 @@ class EventsRepositoryImplTest {
     fun `Post check in, when it is passed a person, then returns an api error message`() = runBlocking {
         // ARRANGE
         val expectedPerson = Event.Person()
-        val expectedResponseError = ApiResponse("400")
+        val expectedResponseError = "Bad request"
         val expectedResponseBody: ResponseBody = ResponseBody.create(
             MediaType.parse("application/json; charset=utf-8"),
             Gson().toJson(expectedResponseError)

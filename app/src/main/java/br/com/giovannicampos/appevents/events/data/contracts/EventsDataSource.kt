@@ -9,7 +9,7 @@ interface EventsDataSource {
     interface Remote {
 
         suspend fun getEvents(): Response<List<Event>>
-        suspend fun getEventById(eventId: Int): Response<Event>
+        suspend fun getEventById(eventId: String): Response<Event>
         suspend fun postCheckIn(person: Event.Person): Response<ApiResponse>
     }
 }

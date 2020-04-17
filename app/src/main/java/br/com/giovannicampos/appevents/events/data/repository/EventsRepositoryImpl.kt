@@ -12,7 +12,7 @@ class EventsRepositoryImpl(private val dataSource: EventsDataSource.Remote) : Ev
         return dataSource.getEvents()
     }
 
-    override suspend fun getEventById(eventId: Int): Response<Event> {
+    override suspend fun getEventById(eventId: String): Response<Event> {
         return dataSource.getEventById(eventId)
     }
 

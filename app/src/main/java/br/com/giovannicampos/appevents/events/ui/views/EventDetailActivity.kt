@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import br.com.giovannicampos.appevents.R
 import br.com.giovannicampos.appevents.base.utils.timestampToDateFull
+import br.com.giovannicampos.appevents.base.utils.toCurrency
 import br.com.giovannicampos.appevents.databinding.ActivityEventDetailBinding
 import br.com.giovannicampos.appevents.databinding.DialogCheckInBinding
 import br.com.giovannicampos.appevents.events.data.models.Event
@@ -25,6 +26,9 @@ class EventDetailActivity : AppCompatActivity() {
     private lateinit var dialogViewBinding: DialogCheckInBinding
 
     private val viewModel by viewModel<EventDetailsViewModel>()
+    private val eventIdExtra: String by lazy {
+        intent.getStringExtra(EventsActivity.EVENT_ID_EXTRA)
+    }
 
     private var dialogView: AlertDialog? = null
 
@@ -49,8 +53,7 @@ class EventDetailActivity : AppCompatActivity() {
 
     private fun loadEventDetails() {
         if (intent.hasExtra(EventsActivity.EVENT_ID_EXTRA)) {
-            val eventId = intent.getIntExtra(EventsActivity.EVENT_ID_EXTRA, 0)
-            viewModel.getEventById(eventId)
+            viewModel.getEventById(eventIdExtra)
         }
     }
 
@@ -93,11 +96,9 @@ class EventDetailActivity : AppCompatActivity() {
                 is EventDetailsViewModel.Command.ShareContentEvent -> {
                     shareContent(viewBinding.tvEventDetailDescription.text.toString())
                 }
-                is EventDetailsViewModel.Command.ValidateCheckIn -> {
-                    if (command.validate) {
-                        showSnackMessage(getString(R.string.check_in_successfully))
-                        dialogView?.dismiss()
-                    }
+                is EventDetailsViewModel.Command.CheckInAccomplished -> {
+                    showSnackMessage(getString(R.string.check_in_successfully))
+                    dialogView?.dismiss()
                 }
                 is EventDetailsViewModel.Command.InvalidateName -> {
                     dialogViewBinding.etPersonName.error = getString(R.string.invalid_name)
@@ -107,6 +108,7 @@ class EventDetailActivity : AppCompatActivity() {
                 }
                 is EventDetailsViewModel.Command.ValidateFields -> {
                     viewModel.doCheckIn(
+                        eventIdExtra,
                         dialogViewBinding.etPersonName.text.toString(),
                         dialogViewBinding.etPersonEmail.text.toString()
                     )
@@ -127,6 +129,9 @@ class EventDetailActivity : AppCompatActivity() {
             tvEventDetailTitle.text = event.title
             tvEventDetailDate.text = event.date.timestampToDateFull()
             tvEventDetailDescription.text = event.description
+            tvEventDetailPrice.text = getString(R.string.currency_with_space, event.price.toCurrency("#,###.00"))
+
+            rvPeople.adapter = PeopleAdapter(event.listPersons)
         }
     }
 

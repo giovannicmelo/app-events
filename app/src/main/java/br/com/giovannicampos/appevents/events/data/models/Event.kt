@@ -3,7 +3,7 @@ package br.com.giovannicampos.appevents.events.data.models
 import com.google.gson.annotations.SerializedName
 
 data class Event(
-    @SerializedName("id") val id: Int = 0,
+    @SerializedName("id") val id: String = "",
     @SerializedName("title") val title: String = "",
     @SerializedName("price") val price: Double = 0.0,
     @SerializedName("latitude") val latitude: Double = 0.0,
@@ -16,13 +16,13 @@ data class Event(
 ) {
 
     data class Coupon(
-        @SerializedName("id") val id: Int = 0,
-        @SerializedName("eventId") val eventId: Int = 0,
+        @SerializedName("id") val id: String = "",
+        @SerializedName("eventId") val eventId: String = "",
         @SerializedName("discount") val discount: Int = 0
     )
 
     data class Person(
-        @SerializedName("id") val id: Int = 0,
+        @SerializedName("id") val id: String = "",
         @SerializedName("eventId") val eventId: String = "",
         @SerializedName("name") val name: String = "",
         @SerializedName("email") val email: String = "",

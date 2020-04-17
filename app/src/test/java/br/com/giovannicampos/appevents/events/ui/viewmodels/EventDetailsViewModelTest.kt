@@ -58,14 +58,15 @@ class EventDetailsViewModelTest {
         val expectedViewState = EventDetailsViewModel.ViewState()
         viewModel.viewState.observeForever(viewStateObserver)
 
-        val expectedEventId = 1
+        val expectedEventId = "1"
         val expectedPerson = Event.Person(
-            id = 1,
-            name = "Test Person"
+            id = "1",
+            name = "Test Person",
+            eventId = expectedEventId
         )
         val expectedCoupon = Event.Coupon(
-            id = 1,
-            eventId = 1,
+            id = "1",
+            eventId = expectedEventId,
             discount = 10
         )
         val expectedEvent = Event(
@@ -100,7 +101,7 @@ class EventDetailsViewModelTest {
     @Test
     fun `Get event by id, when it is passed an event id, then show exception error message`() = runBlocking {
         // ARRANGE
-        val expectedEventId = 0
+        val expectedEventId = ""
         val expectedError = "Exception message"
         val expectedViewState = EventDetailsViewModel.ViewState()
         viewModel.viewState.observeForever(viewStateObserver)
@@ -126,11 +127,11 @@ class EventDetailsViewModelTest {
     @Test
     fun `Get event by id, when it is passed an event id, then show api error message`() = runBlocking {
         // ARRANGE
-        val expectedEventId = 0
+        val expectedEventId = ""
         val expectedViewState = EventDetailsViewModel.ViewState()
         viewModel.viewState.observeForever(viewStateObserver)
 
-        val expectedResponseError = ApiResponse("404")
+        val expectedResponseError = "Not Found"
         val expectedResponseBody: ResponseBody = ResponseBody.create(
             MediaType.parse("application/json; charset=utf-8"),
             Gson().toJson(expectedResponseError)
@@ -191,65 +192,69 @@ class EventDetailsViewModelTest {
     }
 
     @Test
-    fun `Do check in, when it is passed and name and e-mail, then validate check successfully`() = runBlocking {
+    fun `Do check in, when it is passed and name and e-mail, then validate check in successfully`() = runBlocking {
         // ARRANGE
+        val expectedEventId = "1"
         val expectedName = "Test Person"
         val expectedEmail = "person@email.com"
         val expectedPerson = Event.Person(
             name = expectedName,
-            email = expectedEmail
+            email = expectedEmail,
+            eventId = expectedEventId
         )
-        val expectedResponseApi = ApiResponse("200")
+        val expectedResponseApi = ApiResponse("201")
         val expectedResponse: Response<ApiResponse> = Response.success(expectedResponseApi)
-        val expectedCommand = EventDetailsViewModel.Command.ValidateCheckIn(true)
         whenever(repositoryMock.postCheckIn(expectedPerson)).thenReturn(expectedResponse)
 
         // ACT
-        viewModel.doCheckIn(expectedName, expectedEmail)
+        viewModel.doCheckIn(expectedEventId, expectedName, expectedEmail)
 
         // ASSERT
         verify(repositoryMock, times(1)).postCheckIn(expectedPerson)
 
-        val commandCaptor = argumentCaptor<EventDetailsViewModel.Command.ValidateCheckIn>()
-        verify(commandMock, times(1)).postValue(commandCaptor.capture())
-
-        Assert.assertTrue(expectedCommand.validate)
+        val expectedCommand = EventDetailsViewModel.Command.CheckInAccomplished
+        verify(commandMock, times(1)).postValue(expectedCommand)
     }
 
     @Test
-    fun `Do check in, when it is passed and name and e-mail, then validate check failed`() = runBlocking {
+    fun `Do check in, when it is passed and name and e-mail, then validate check in failed`() = runBlocking {
         // ARRANGE
-        val expectedName = "Test Person"
-        val expectedEmail = "person@email.com"
+        val expectedEventId = ""
+        val expectedName = ""
+        val expectedEmail = ""
         val expectedPerson = Event.Person(
             name = expectedName,
-            email = expectedEmail
+            email = expectedEmail,
+            eventId = expectedEventId
         )
-        val expectedResponseApi = ApiResponse("200")
-        val expectedResponse: Response<ApiResponse> = Response.success(expectedResponseApi)
-        val expectedCommand = EventDetailsViewModel.Command.ValidateCheckIn(false)
-        whenever(repositoryMock.postCheckIn(expectedPerson)).thenReturn(expectedResponse)
+        val expectedResponseError = "Not Found"
+        val expectedResponseBody: ResponseBody = ResponseBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            Gson().toJson(expectedResponseError)
+        )
+
+        val expectedCommand = EventDetailsViewModel.Command.ShowApiErrorMessage
+        val expectedResponseCheckIn = Response.error<ApiResponse>(404, expectedResponseBody)
+        whenever(repositoryMock.postCheckIn(expectedPerson)).thenReturn(expectedResponseCheckIn)
 
         // ACT
-        viewModel.doCheckIn(expectedName, expectedEmail)
+        viewModel.doCheckIn(expectedEventId, expectedName, expectedEmail)
 
         // ASSERT
         verify(repositoryMock, times(1)).postCheckIn(expectedPerson)
-
-        val commandCaptor = argumentCaptor<EventDetailsViewModel.Command.ValidateCheckIn>()
-        verify(commandMock, times(1)).postValue(commandCaptor.capture())
-
-        Assert.assertFalse(expectedCommand.validate)
+        verify(commandMock, times(1)).postValue(expectedCommand)
     }
 
     @Test
     fun `Do check in, when it is passed and name and e-mail, then show exception error message`() = runBlocking {
         // ARRANGE
+        val expectedEventId = ""
         val expectedName = ""
         val expectedEmail = ""
         val expectedPerson = Event.Person(
             name = expectedName,
-            email = expectedEmail
+            email = expectedEmail,
+            eventId = expectedEventId
         )
         val expectedError = "Exception message"
         val expectedCommand = EventDetailsViewModel.Command.ShowExceptionMessage(expectedError)
@@ -258,7 +263,7 @@ class EventDetailsViewModelTest {
             throw Exception(expectedError)
         }
         // ACT
-        viewModel.doCheckIn(expectedName, expectedEmail)
+        viewModel.doCheckIn(expectedEventId, expectedName, expectedEmail)
 
         // ASSERT
         verify(repositoryMock, times(1)).postCheckIn(expectedPerson)

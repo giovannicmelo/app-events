@@ -23,7 +23,7 @@ class EventDetailsViewModel(
         viewState.value = ViewState()
     }
 
-    fun getEventById(eventId: Int) {
+    fun getEventById(eventId: String) {
         viewModelScope.launch {
             try {
                 val response = repository.getEventById(eventId)
@@ -59,23 +59,32 @@ class EventDetailsViewModel(
         command.value = Command.OpenCheckInFormModal
     }
 
-    fun validateFields(nameTyped: String?, emailTyped: String?) {
-        if (nameTyped.isNullOrEmpty()) {
+    fun validateFields(nameTyped: String, emailTyped: String) {
+        if (nameTyped.isEmpty()) {
             command.value = Command.InvalidateName
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTyped.toString()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTyped).matches()) {
             command.value = Command.InvalidateEmail
         } else {
             command.value = Command.ValidateFields
         }
     }
 
-    fun doCheckIn(nameTyped: String, emailTyped: String) {
+    fun doCheckIn(eventId: String, nameTyped: String, emailTyped: String) {
         viewModelScope.launch {
             try {
-                val person = Event.Person(name = nameTyped, email = emailTyped)
+                val person = Event.Person(
+                    eventId = eventId,
+                    name = nameTyped,
+                    email = emailTyped
+                )
                 val response = repository.postCheckIn(person)
 
-                command.postValue(Command.ValidateCheckIn(response.isSuccessful))
+                if (response.isSuccessful) {
+                    command.postValue(Command.CheckInAccomplished)
+                } else {
+                    command.postValue(Command.ShowApiErrorMessage)
+                }
+
             } catch (e: Exception) {
                 command.postValue(Command.ShowExceptionMessage(e.localizedMessage!!))
             }
@@ -91,7 +100,7 @@ class EventDetailsViewModel(
         object ShowNoConnectionMessage : Command()
         object ShareContentEvent : Command()
         object OpenCheckInFormModal : Command()
-        class ValidateCheckIn(val validate: Boolean) : Command()
+        object CheckInAccomplished : Command()
         object InvalidateName : Command()
         object InvalidateEmail : Command()
         object ValidateFields : Command()

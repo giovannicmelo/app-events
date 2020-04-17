@@ -17,7 +17,7 @@ interface EventsApi {
 
     @Headers("Content-Type: application/json")
     @GET("events/{eventId}")
-    suspend fun getEventById(@Path("eventId") eventId: Int): Response<Event>
+    suspend fun getEventById(@Path("eventId") eventId: String): Response<Event>
 
     @Headers("Content-Type: application/json")
     @POST("checkin")

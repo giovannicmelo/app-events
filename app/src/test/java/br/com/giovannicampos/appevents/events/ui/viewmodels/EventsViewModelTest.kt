@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import br.com.giovannicampos.appevents.CoroutinesTestRule
 import br.com.giovannicampos.appevents.base.command.models.GenericCommand
 import br.com.giovannicampos.appevents.base.command.providers.CommandProvider
-import br.com.giovannicampos.appevents.base.data.models.ApiResponse
 import br.com.giovannicampos.appevents.base.ui.SingleLiveEvent
 import br.com.giovannicampos.appevents.events.data.contracts.EventsRepository
 import br.com.giovannicampos.appevents.events.data.models.Event
@@ -59,17 +58,17 @@ class EventsViewModelTest {
         viewModel.viewState.observeForever(viewStateObserver)
 
         val expectedPerson = Event.Person(
-            id = 1,
+            id = "1",
             name = "Test Person"
         )
         val expectedCoupon = Event.Coupon(
-            id = 1,
-            eventId = 1,
+            id = "1",
+            eventId = "1",
             discount = 10
         )
         val expectedEventsList = listOf(
             Event(
-                id = 1,
+                id = "1",
                 date = 1534784400000,
                 title = "Event 1",
                 description = "Test event 1",
@@ -151,7 +150,7 @@ class EventsViewModelTest {
         val expectedViewState = EventsViewModel.ViewState()
         viewModel.viewState.observeForever(viewStateObserver)
 
-        val expectedResponseError = ApiResponse("404")
+        val expectedResponseError = "Not found"
         val expectedResponseBody: ResponseBody = ResponseBody.create(
             MediaType.parse("application/json; charset=utf-8"),
             Gson().toJson(expectedResponseError)

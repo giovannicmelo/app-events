@@ -12,7 +12,7 @@ class EventsRemoteDataSource(private val api: EventsApi) : EventsDataSource.Remo
         return api.getEvents()
     }
 
-    override suspend fun getEventById(eventId: Int): Response<Event> {
+    override suspend fun getEventById(eventId: String): Response<Event> {
         return api.getEventById(eventId)
     }
 
