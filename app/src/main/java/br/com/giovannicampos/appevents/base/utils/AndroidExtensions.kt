@@ -20,5 +20,5 @@ fun Context.getAddresses(latitude: Double, longitude: Double): List<Address> {
     return Geocoder(
         this,
         Locale("pt", "BR")
-    ).getFromLocation(latitude, longitude,1)
+    ).getFromLocation(latitude, longitude, 1)
 }

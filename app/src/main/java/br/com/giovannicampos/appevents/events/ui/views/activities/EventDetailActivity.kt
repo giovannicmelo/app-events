@@ -2,7 +2,6 @@ package br.com.giovannicampos.appevents.events.ui.views.activities
 
 import android.content.Intent
 import android.location.Address
-import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -29,7 +28,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Locale
 
 class EventDetailActivity : AppCompatActivity() {
 
