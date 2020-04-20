@@ -21,6 +21,7 @@ Mais informações sobre a arquitetura poderão ser consultadas em:
 - **Gson**: Necessária para a conversão do retorno das requisições de Json para objetos;
 - **Google Maps**: biblioteca utilizada na renderização do mapa na tela de detalhes;
 - **JUnit4 e MockitoKotlin**: bibliotecas necessárias para a implementação de testes unitários.
+- **Jacoco: bilbioteca utilizada para a geração de relatórios para cobertura de código.
 
 ## Screen Shots
 ![](prints/screen_1.png)
