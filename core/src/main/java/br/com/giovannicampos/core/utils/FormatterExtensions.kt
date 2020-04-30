@@ -2,7 +2,6 @@ package br.com.giovannicampos.core.utils
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -17,41 +16,25 @@ fun Double.toCurrency(formatPattern: String): String {
 }
 
 fun Long.timestampToDayOfMonth(): String {
-    return try {
-        val locale = Locale("pt", "BR")
-        val formatter = SimpleDateFormat("dd", locale)
-        formatter.format(Date(this))
-    } catch (e: ParseException) {
-        ""
-    }
+    val locale = Locale("pt", "BR")
+    val formatter = SimpleDateFormat("dd", locale)
+    return formatter.format(Date(this))
 }
 
 fun Long.timestampToShortMonth(): String {
-    return try {
-        val locale = Locale("pt", "BR")
-        val formatter = SimpleDateFormat("MMM", locale)
-        formatter.format(Date(this)).toUpperCase(locale)
-    } catch (e: ParseException) {
-        ""
-    }
+    val locale = Locale("pt", "BR")
+    val formatter = SimpleDateFormat("MMM", locale)
+    return formatter.format(Date(this)).toUpperCase(locale)
 }
 
 fun Long.timestampToYear(): String {
-    return try {
-        val locale = Locale("pt", "BR")
-        val formatter = SimpleDateFormat("yyyy", locale)
-        formatter.format(Date(this))
-    } catch (e: ParseException) {
-        ""
-    }
+    val locale = Locale("pt", "BR")
+    val formatter = SimpleDateFormat("yyyy", locale)
+    return formatter.format(Date(this))
 }
 
 fun Long.timestampToDateFull(): String {
-    return try {
-        val locale = Locale("pt", "BR")
-        val formatter = SimpleDateFormat("dd 'de' MMMM 'de' yyyy", locale)
-        formatter.format(Date(this)).toLowerCase(locale)
-    } catch (e: ParseException) {
-        ""
-    }
+    val locale = Locale("pt", "BR")
+    val formatter = SimpleDateFormat("dd 'de' MMMM 'de' yyyy", locale)
+    return formatter.format(Date(this)).toLowerCase(locale)
 }
