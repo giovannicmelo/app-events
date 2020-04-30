@@ -32,7 +32,6 @@ def fileFilter = [
         '**/local/**/*.*',
         '**/models/**/*.*',
         '**/paging/**/*.*',
-        '**/remote/**/*.*',
         '**/shared/**/*.*',
         '**/AndroidExtensionsKt.*',
         '**/view/**/*.*',
