@@ -43,8 +43,8 @@ def fileFilter = [
         '**/*Fragment.*',
         '**/*Application.*',
         '**/*SingleLiveEvent.*',
-        '**/base/command/**/*.*',
-        '**/base/data/services/**/*.*'
+        '**/core/command/**/*.*',
+        '**/core/data/network/**/*.*'
 ]
 
 task jacocoFullTestReport(type: JacocoReport) {
@@ -54,7 +54,7 @@ task jacocoFullTestReport(type: JacocoReport) {
 
     //Make sure that tests from all modules are run before coverage report
     dependsOn ":app:testDebugUnitTest"
-
+    dependsOn ":core:testDebugUnitTest"
 
     classDirectories = files([
             fileTree(
@@ -63,11 +63,20 @@ task jacocoFullTestReport(type: JacocoReport) {
             ) + fileTree(
                     dir: "$project.rootDir/app/build/tmp/kotlin-classes/debug",
                     excludes: fileFilter
-            )
+            ),
+            fileTree(
+                    dir: "$project.rootDir/core/build/intermediates/classes/debug",
+                    excludes: fileFilter
+            ) + fileTree(
+                    dir: "$project.rootDir/core/build/tmp/kotlin-classes/debug",
+                    excludes: fileFilter
+            ),
     ])
     def coverageSourceDirs = [
             "$project.rootDir/app/android.sourceSets.main.java.srcDirs",
-            "$project.rootDir/app/src/main/java"
+            "$project.rootDir/app/src/main/java",
+            "$project.rootDir/core/android.sourceSets.main.java.srcDirs",
+            "$project.rootDir/core/src/main/java"
     ]
 
     additionalSourceDirs = files(coverageSourceDirs)
@@ -76,6 +85,8 @@ task jacocoFullTestReport(type: JacocoReport) {
     executionData = fileTree(dir: project.rootDir, includes: [
             'app/build/jacoco/testDebugUnitTest.exec',
             // 'app/build/outputs/code-coverage/connected/*coverage.ec',
+            'core/build/jacoco/testDebugUnitTest.exec',
+            // 'core/build/outputs/code-coverage/connected/*coverage.ec',
     ])
 
     reports {

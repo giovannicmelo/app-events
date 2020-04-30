@@ -1,6 +1,6 @@
 package br.com.giovannicampos.appevents.events.data.remote
 
-import br.com.giovannicampos.appevents.base.data.models.ApiResponse
+import br.com.giovannicampos.core.data.models.ApiResponse
 import br.com.giovannicampos.appevents.events.data.api.EventsApi
 import br.com.giovannicampos.appevents.events.data.contracts.EventsDataSource
 import br.com.giovannicampos.appevents.events.data.models.Event

@@ -1,6 +1,6 @@
 package br.com.giovannicampos.appevents.events.di
 
-import br.com.giovannicampos.appevents.base.data.services.ServiceClient
+import br.com.giovannicampos.core.data.network.ServiceClient
 import br.com.giovannicampos.appevents.events.data.api.EventsApi
 import br.com.giovannicampos.appevents.events.data.contracts.EventsDataSource
 import br.com.giovannicampos.appevents.events.data.contracts.EventsRepository

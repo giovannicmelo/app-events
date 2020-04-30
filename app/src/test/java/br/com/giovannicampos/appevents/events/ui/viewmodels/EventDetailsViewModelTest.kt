@@ -2,11 +2,11 @@ package br.com.giovannicampos.appevents.events.ui.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import br.com.giovannicampos.appevents.CoroutinesTestRule
-import br.com.giovannicampos.appevents.base.command.models.GenericCommand
-import br.com.giovannicampos.appevents.base.command.providers.CommandProvider
-import br.com.giovannicampos.appevents.base.data.models.ApiResponse
-import br.com.giovannicampos.appevents.base.ui.SingleLiveEvent
+import br.com.giovannicampos.appevents.events.CoroutinesTestRule
+import br.com.giovannicampos.core.command.models.GenericCommand
+import br.com.giovannicampos.core.command.interfaces.CommandProvider
+import br.com.giovannicampos.core.data.models.ApiResponse
+import br.com.giovannicampos.core.ui.SingleLiveEvent
 import br.com.giovannicampos.appevents.events.data.contracts.EventsRepository
 import br.com.giovannicampos.appevents.events.data.models.Event
 import com.google.gson.Gson
@@ -38,7 +38,8 @@ class EventDetailsViewModelTest {
 
     @ExperimentalCoroutinesApi
     @get:Rule
-    var coroutinesTestRule = CoroutinesTestRule()
+    var coroutinesTestRule =
+        CoroutinesTestRule()
 
     @Before
     fun setUp() {
@@ -202,7 +203,8 @@ class EventDetailsViewModelTest {
             email = expectedEmail,
             eventId = expectedEventId
         )
-        val expectedResponseApi = ApiResponse("201")
+        val expectedResponseApi =
+            ApiResponse("201")
         val expectedResponse: Response<ApiResponse> = Response.success(expectedResponseApi)
         whenever(repositoryMock.postCheckIn(expectedPerson)).thenReturn(expectedResponse)
 

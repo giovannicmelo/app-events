@@ -1,6 +1,6 @@
 package br.com.giovannicampos.appevents.events.data.api
 
-import br.com.giovannicampos.appevents.base.data.models.ApiResponse
+import br.com.giovannicampos.core.data.models.ApiResponse
 import br.com.giovannicampos.appevents.events.data.models.Event
 import retrofit2.Response
 import retrofit2.http.Body

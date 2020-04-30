@@ -1,6 +1,6 @@
 package br.com.giovannicampos.appevents.events.data.remote
 
-import br.com.giovannicampos.appevents.base.data.models.ApiResponse
+import br.com.giovannicampos.core.data.models.ApiResponse
 import br.com.giovannicampos.appevents.events.data.api.EventsApi
 import br.com.giovannicampos.appevents.events.data.contracts.EventsDataSource
 import br.com.giovannicampos.appevents.events.data.models.Event
@@ -143,7 +143,8 @@ class EventsRemoteDataSourceTest {
             name = "Test Person",
             email = "person@mail.to.me"
         )
-        val expectedCheckResponse = ApiResponse("201")
+        val expectedCheckResponse =
+            ApiResponse("201")
         val expectedResponseApi: Response<ApiResponse> = Response.success(expectedCheckResponse)
         whenever(apiMock.postCheckIn(expectedPerson)).thenReturn(expectedResponseApi)
 

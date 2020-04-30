@@ -12,9 +12,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovannicampos.appevents.R
-import br.com.giovannicampos.appevents.base.utils.getAddresses
-import br.com.giovannicampos.appevents.base.utils.timestampToDateFull
-import br.com.giovannicampos.appevents.base.utils.toCurrency
+import br.com.giovannicampos.core.utils.getAddresses
+import br.com.giovannicampos.core.utils.timestampToDateFull
+import br.com.giovannicampos.core.utils.toCurrency
 import br.com.giovannicampos.appevents.databinding.ActivityEventDetailBinding
 import br.com.giovannicampos.appevents.databinding.DialogCheckInBinding
 import br.com.giovannicampos.appevents.events.data.models.Event

@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "$rootProject.projectDir/base-build.gradle"
+
+android {
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        buildConfigField "String", "BASE_URL", "\"http://5b840ba5db24a100142dcd8c.mockapi.io/api/\""
+    }
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation dependencies.kotlin
+    implementation dependencies.appcompat
+    implementation dependencies.ktx
+    implementation dependencies.koin.core
+    implementation dependencies.retrofit2.retrofit
+    implementation dependencies.retrofit2.convertergson
+    implementation dependencies.okhttp3.okhttp
+    implementation dependencies.okhttp3.logging
+    implementation dependencies.gson
+    implementation dependencies.coroutinesadapter
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitokotlin
+    testImplementation testDependencies.coretesting
+    testImplementation testDependencies.coroutines
+    androidTestImplementation testDependencies.junitExt
+    androidTestImplementation testDependencies.espresso
+}

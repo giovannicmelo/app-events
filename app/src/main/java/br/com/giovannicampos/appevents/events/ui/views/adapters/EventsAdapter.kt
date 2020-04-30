@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovannicampos.appevents.R
-import br.com.giovannicampos.appevents.base.utils.dpToPx
-import br.com.giovannicampos.appevents.base.utils.getAddresses
-import br.com.giovannicampos.appevents.base.utils.timestampToDayOfMonth
-import br.com.giovannicampos.appevents.base.utils.timestampToShortMonth
-import br.com.giovannicampos.appevents.base.utils.timestampToYear
+import br.com.giovannicampos.core.utils.dpToPx
+import br.com.giovannicampos.core.utils.getAddresses
+import br.com.giovannicampos.core.utils.timestampToDayOfMonth
+import br.com.giovannicampos.core.utils.timestampToShortMonth
+import br.com.giovannicampos.core.utils.timestampToYear
 import br.com.giovannicampos.appevents.databinding.ItemEventBinding
 import br.com.giovannicampos.appevents.events.data.models.Event
 import coil.api.load

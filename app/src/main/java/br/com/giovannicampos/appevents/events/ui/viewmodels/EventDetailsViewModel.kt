@@ -4,9 +4,9 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.giovannicampos.appevents.base.command.models.GenericCommand
-import br.com.giovannicampos.appevents.base.command.providers.CommandProvider
-import br.com.giovannicampos.appevents.base.ui.SingleLiveEvent
+import br.com.giovannicampos.core.command.models.GenericCommand
+import br.com.giovannicampos.core.command.interfaces.CommandProvider
+import br.com.giovannicampos.core.ui.SingleLiveEvent
 import br.com.giovannicampos.appevents.events.data.contracts.EventsRepository
 import br.com.giovannicampos.appevents.events.data.models.Event
 import kotlinx.coroutines.launch

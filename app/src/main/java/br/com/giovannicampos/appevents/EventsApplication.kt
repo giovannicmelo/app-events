@@ -1,7 +1,7 @@
 package br.com.giovannicampos.appevents
 
 import android.app.Application
-import br.com.giovannicampos.appevents.base.di.getBaseModules
+import br.com.giovannicampos.core.di.getBaseModules
 import br.com.giovannicampos.appevents.events.di.getEventsModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

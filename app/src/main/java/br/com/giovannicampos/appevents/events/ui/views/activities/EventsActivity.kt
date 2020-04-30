@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import br.com.giovannicampos.appevents.R
-import br.com.giovannicampos.appevents.base.utils.isConnected
+import br.com.giovannicampos.core.utils.isConnected
 import br.com.giovannicampos.appevents.databinding.ActivityEventsBinding
 import br.com.giovannicampos.appevents.events.ui.viewmodels.EventsViewModel
 import br.com.giovannicampos.appevents.events.ui.views.adapters.EventsAdapter
