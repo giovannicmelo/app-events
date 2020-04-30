@@ -20,7 +20,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="br.com.giovannicampos.appevents.events.ui.views.activities.EventsActivity"
+            android:name="br.com.giovannicampos.events.ui.views.activities.EventsActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="br.com.giovannicampos.appevents.events.ui.views.activities.EventDetailActivity"
+            android:name="br.com.giovannicampos.events.ui.views.activities.EventDetailActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
     </application>

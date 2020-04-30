@@ -42,7 +42,6 @@ ext {
             appcompat               : "androidx.appcompat:appcompat:$appCompatVersion",
             coil                    : "io.coil-kt:coil:$coilVersion",
             constraintlayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
-//            coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
             coroutinesadapter       : "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutinesAdapterVersion",
             gson                    : "com.google.code.gson:gson:$gsonVersion",
             koin                    : [
