@@ -15,3 +15,5 @@ gradlew.bat
 .DS_Store
 .externalNativeBuild
 .cxx
+*jacoco.exec
+/jacocoHtml/

@@ -29,3 +29,6 @@ Mais informações sobre a arquitetura poderão ser consultadas em:
 ![](prints/screen_3.png)
 ![](prints/screen_4.png)
 ![](prints/screen_5.png)
+
+## Cobertura de Código (JaCoCo)
+![](prints/jacoco.png)

@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: "$rootProject.projectDir/base-build.gradle"
+
+android {
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    api project(':core')
+
+    implementation dependencies.kotlin
+    implementation dependencies.material
+    implementation dependencies.support
+    implementation dependencies.constraintlayout
+    implementation dependencies.coil
+    implementation dependencies.lifecycle.extensions
+    implementation dependencies.lifecycle.viewmodel
+    implementation dependencies.koin.android
+    implementation dependencies.koin.viewmodel
+    implementation dependencies.play
+    implementation dependencies.retrofit2.retrofit
+    implementation dependencies.gson
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitokotlin
+    testImplementation testDependencies.coretesting
+    testImplementation testDependencies.coroutines
+    androidTestImplementation testDependencies.junitExt
+    androidTestImplementation testDependencies.espresso
+}
