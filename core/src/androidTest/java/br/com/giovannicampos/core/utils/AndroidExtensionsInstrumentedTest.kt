@@ -8,7 +8,7 @@ class AndroidExtensionsInstrumentedTest {
 
     @Test
     fun dpToPx_returnConversionDpToPixel() {
-        // ASSERT
+        // ARRANGE
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val expectedPx = 21.0f
 
@@ -21,7 +21,7 @@ class AndroidExtensionsInstrumentedTest {
 
     @Test
     fun isConnected_checksIfHasConnection() {
-        // ASSERT
+        // ARRANGE
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         // ACT
@@ -33,7 +33,7 @@ class AndroidExtensionsInstrumentedTest {
 
     @Test
     fun isConnected_checksIfHasNoConnection() {
-        // ASSERT
+        // ARRANGE
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         // ACT
@@ -45,7 +45,7 @@ class AndroidExtensionsInstrumentedTest {
 
     @Test
     fun getAddresses_getListOfAddressesByLatLng() {
-        // ASSERT
+        // ARRANGE
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val latitude = -51.2146267
         val longitude = -30.0392981

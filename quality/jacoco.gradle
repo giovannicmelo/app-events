@@ -44,7 +44,7 @@ def fileFilter = [
         '**/*Application.*',
         '**/*SingleLiveEvent.*',
         '**/core/command/**/*.*',
-        '**/core/data/network/**/*.*'
+        '**/core/data/network/**/*.*',
 ]
 
 task jacocoFullTestReport(type: JacocoReport) {
@@ -104,5 +104,7 @@ task jacocoFullTestReport(type: JacocoReport) {
     reports {
         xml.enabled = true
         html.enabled = true
+
+        html.destination file("$project.rootDir/jacocoHtml")
     }
 }

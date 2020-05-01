@@ -6,8 +6,8 @@ import br.com.giovannicampos.events.data.contracts.EventsDataSource
 import br.com.giovannicampos.events.data.contracts.EventsRepository
 import br.com.giovannicampos.events.data.remote.EventsRemoteDataSource
 import br.com.giovannicampos.events.data.repository.EventsRepositoryImpl
-import br.com.giovannicampos.events.viewmodels.EventDetailsViewModel
-import br.com.giovannicampos.events.viewmodels.EventsViewModel
+import br.com.giovannicampos.events.ui.viewmodels.EventDetailsViewModel
+import br.com.giovannicampos.events.ui.viewmodels.EventsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module

@@ -16,3 +16,4 @@ gradlew.bat
 .externalNativeBuild
 .cxx
 *jacoco.exec
+/jacocoHtml/

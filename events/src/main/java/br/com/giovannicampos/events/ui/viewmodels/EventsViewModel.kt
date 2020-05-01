@@ -1,4 +1,4 @@
-package br.com.giovannicampos.events.viewmodels
+package br.com.giovannicampos.events.ui.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

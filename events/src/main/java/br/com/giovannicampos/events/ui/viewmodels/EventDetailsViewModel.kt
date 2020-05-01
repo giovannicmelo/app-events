@@ -1,11 +1,10 @@
-package br.com.giovannicampos.events.viewmodels
+package br.com.giovannicampos.events.ui.viewmodels
 
-import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.giovannicampos.core.command.models.GenericCommand
 import br.com.giovannicampos.core.command.interfaces.CommandProvider
+import br.com.giovannicampos.core.command.models.GenericCommand
 import br.com.giovannicampos.core.ui.SingleLiveEvent
 import br.com.giovannicampos.events.data.contracts.EventsRepository
 import br.com.giovannicampos.events.data.models.Event
@@ -59,16 +58,6 @@ class EventDetailsViewModel(
         command.value = Command.OpenCheckInFormModal
     }
 
-    fun validateFields(nameTyped: String, emailTyped: String) {
-        if (nameTyped.isEmpty()) {
-            command.value = Command.InvalidateName
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTyped).matches()) {
-            command.value = Command.InvalidateEmail
-        } else {
-            command.value = Command.ValidateFields
-        }
-    }
-
     fun doCheckIn(eventId: String, nameTyped: String, emailTyped: String) {
         viewModelScope.launch {
             try {
@@ -100,9 +89,6 @@ class EventDetailsViewModel(
         object ShareContentEvent : Command()
         object OpenCheckInFormModal : Command()
         object CheckInAccomplished : Command()
-        object InvalidateName : Command()
-        object InvalidateEmail : Command()
-        object ValidateFields : Command()
     }
 
     data class ViewState(val isLoading: Boolean = true)

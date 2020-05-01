@@ -18,9 +18,11 @@ import br.com.giovannicampos.events.R
 import br.com.giovannicampos.events.data.models.Event
 import br.com.giovannicampos.events.databinding.ActivityEventDetailBinding
 import br.com.giovannicampos.events.databinding.DialogCheckInBinding
-import br.com.giovannicampos.events.viewmodels.EventDetailsViewModel
+import br.com.giovannicampos.events.ui.viewmodels.EventDetailsViewModel
 import br.com.giovannicampos.events.ui.views.adapters.CouponsAdapter
 import br.com.giovannicampos.events.ui.views.adapters.PeopleAdapter
+import br.com.giovannicampos.events.utils.isValidEmail
+import br.com.giovannicampos.events.utils.isValidName
 import coil.api.load
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
@@ -109,19 +111,6 @@ class EventDetailActivity : AppCompatActivity() {
                     showSnackMessage(getString(R.string.check_in_successfully))
                     dialogView?.dismiss()
                 }
-                is EventDetailsViewModel.Command.InvalidateName -> {
-                    dialogViewBinding.etPersonName.error = getString(R.string.invalid_name)
-                }
-                is EventDetailsViewModel.Command.InvalidateEmail -> {
-                    dialogViewBinding.etPersonEmail.error = getString(R.string.invalid_email)
-                }
-                is EventDetailsViewModel.Command.ValidateFields -> {
-                    viewModel.doCheckIn(
-                        eventIdExtra,
-                        dialogViewBinding.etPersonName.text.toString(),
-                        dialogViewBinding.etPersonEmail.text.toString()
-                    )
-                }
             }
         })
 
@@ -195,16 +184,31 @@ class EventDetailActivity : AppCompatActivity() {
 
         val viewBindingApplied = dialogViewBinding.apply {
             btCheckInConfirm.setOnClickListener {
-                viewModel.validateFields(
-                    this.etPersonName.text.toString(),
-                    this.etPersonEmail.text.toString()
-                )
+                validateFields(etPersonName.text.toString(), etPersonEmail.text.toString())
             }
         }
 
         val dialogBuilder = AlertDialog.Builder(this).setView(viewBindingApplied.root)
         dialogView = dialogBuilder.create()
         dialogView?.show()
+    }
+
+    private fun validateFields(name: String, email: String) {
+        if (!name.isValidName()) {
+            dialogViewBinding.tlPersonName.error = getString(R.string.invalid_name)
+            return
+        } else {
+            dialogViewBinding.tlPersonName.error = null
+        }
+
+        if (!email.isValidEmail()) {
+            dialogViewBinding.tlPersonEmail.error = getString(R.string.invalid_email)
+            return
+        } else {
+            dialogViewBinding.tlPersonEmail.error = null
+        }
+
+        viewModel.doCheckIn(eventIdExtra, name, email)
     }
 
     private fun setupMaps(event: Event) {

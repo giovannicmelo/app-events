@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import br.com.giovannicampos.core.utils.isConnected
 import br.com.giovannicampos.events.R
 import br.com.giovannicampos.events.databinding.ActivityEventsBinding
-import br.com.giovannicampos.events.viewmodels.EventsViewModel
+import br.com.giovannicampos.events.ui.viewmodels.EventsViewModel
 import br.com.giovannicampos.events.ui.views.adapters.EventsAdapter
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel

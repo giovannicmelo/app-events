@@ -8,7 +8,6 @@ import br.com.giovannicampos.core.ui.SingleLiveEvent
 import br.com.giovannicampos.events.CoroutinesTestRule
 import br.com.giovannicampos.events.data.contracts.EventsRepository
 import br.com.giovannicampos.events.data.models.Event
-import br.com.giovannicampos.events.viewmodels.EventsViewModel
 import com.google.gson.Gson
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.mock
