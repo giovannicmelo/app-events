@@ -2,6 +2,7 @@ package br.com.giovannicampos.events.ui.views.adapters
 
 import android.location.Address
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovannicampos.core.utils.dpToPx
@@ -73,7 +74,10 @@ class EventsAdapter(
                 }
 
                 val addresses: List<Address> = context.getAddresses(event.latitude, event.longitude)
-                tvEventCity.text = context.getString(R.string.city_and_country, addresses[0].subAdminArea, addresses[0].countryName)
+                if (addresses.isNotEmpty())
+                    tvEventCity.text = context.getString(R.string.city_and_country, addresses[0].subAdminArea, addresses[0].countryName)
+                else
+                    tvEventCity.visibility = View.GONE
             }
         }
     }
