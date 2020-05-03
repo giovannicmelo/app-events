@@ -10,4 +10,4 @@ private val commandModule: Module = module(override = true) {
     single<CommandProvider> { CommandInjector }
 }
 
-fun getBaseModules(): List<Module> = listOf(commandModule)
+fun getCoreModules(): List<Module> = listOf(commandModule)
