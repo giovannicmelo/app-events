@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ dev ]
   pull_request:
-    branches: [ dev ]
+    branches:
+      - main
 
   workflow_dispatch:
 
@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up JDK environment
-        uses: actions/setup-java@v1.4.3
-        with:
-          java-version: 1.8
-
       - name: Checkout
         uses: actions/checkout@v2
         
