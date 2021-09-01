@@ -7,8 +7,10 @@
 Este projeto é um aplicativo que renderiza uma lista de eventos e seus detalhes a partir de um serviço REST.
 
 ## Arquitetura usada
-O projeto citado faz uso da **Clean Architecture**, que tem como objetivo separar responsabilidades, seguir os princípios SOLID e simplificar a manutenção do código
-[![https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg "CleanArchitecture.jpg")](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg "CleanArchitecture.jpg")
+O projeto citado faz uso da **Clean Architecture**, que tem como objetivo separar responsabilidades, seguir os princípios SOLID e simplificar a manutenção do código.
+
+![https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg "CleanArchitecture.jpg")](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg "CleanArchitecture.jpg")
+
 Mais informações sobre a arquitetura poderão ser consultadas em:
 [The Clean Architecture - The Clean Code Blog (Robert C. Martin)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html "The Clean Architecture - The Clean Code Blog (Robert C. Martin)")
 
