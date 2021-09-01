@@ -19,6 +19,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Run Ktlint
         run: ./gradlew ktlintFormat
       - name: Run Unit Tests
