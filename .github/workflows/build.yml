@@ -22,10 +22,12 @@ jobs:
           distribution: 'adopt'
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+      - name: Run lint
+        run: ./gradlew lintDebug
       - name: Run Ktlint
-        run: ./gradlew ktlintFormat
+        run: ./gradlew ktlint
       - name: Run Unit Tests
-        run: ./gradlew cleanTestDebugUnitTest, testDebugUnitTest
+        run: ./gradlew testDebugUnitTest
       - name: Run JaCoCo
         run: ./gradlew jacocoFullTestReport
       - name: Build app
