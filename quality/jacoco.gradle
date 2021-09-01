@@ -61,7 +61,7 @@ task jacocoFullTestReport(type: JacocoReport) {
     dependsOn ":core:testDebugUnitTest"
     dependsOn ":events:testDebugUnitTest"
 
-    classDirectories = files([
+    def classDirectories = files([
             fileTree(
                     dir: "$project.rootDir/app/build/intermediates/classes/debug",
                     excludes: fileFilter
@@ -84,6 +84,9 @@ task jacocoFullTestReport(type: JacocoReport) {
                     excludes: fileFilter
             ),
     ])
+
+    getClassDirectories().setFrom(classDirectories)
+
     def coverageSourceDirs = [
             "$project.rootDir/app/android.sourceSets.main.java.srcDirs",
             "$project.rootDir/app/src/main/java",
@@ -93,10 +96,13 @@ task jacocoFullTestReport(type: JacocoReport) {
             "$project.rootDir/events/src/main/java",
     ]
 
-    additionalSourceDirs = files(coverageSourceDirs)
-    sourceDirectories = files(coverageSourceDirs)
+    def additionalSourceDirs = files(coverageSourceDirs)
+    getAdditionalSourceDirs().setFrom(additionalSourceDirs)
 
-    executionData = fileTree(dir: project.rootDir, includes: [
+    def sourceDirectories = files(coverageSourceDirs)
+    getSourceDirectories().setFrom(sourceDirectories)
+
+    def executionData = fileTree(dir: project.rootDir, includes: [
             'app/build/jacoco/testDebugUnitTest.exec',
             // 'app/build/outputs/code-coverage/connected/*coverage.ec',
             'core/build/jacoco/testDebugUnitTest.exec',
@@ -104,6 +110,7 @@ task jacocoFullTestReport(type: JacocoReport) {
             'events/build/jacoco/testDebugUnitTest.exec',
             // 'events/build/outputs/code-coverage/connected/*coverage.ec',
     ])
+    getExecutionData().setFrom(executionData)
 
     reports {
         xml.enabled = true

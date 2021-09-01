@@ -41,7 +41,7 @@ class EventDetailActivity : AppCompatActivity() {
     private lateinit var dialogViewBinding: DialogCheckInBinding
 
     private val viewModel: EventDetailsViewModel by viewModel()
-    private val eventIdExtra: String by lazy { intent.getStringExtra(EventsActivity.EVENT_ID_EXTRA) }
+    private val eventIdExtra: String by lazy { intent.getStringExtra(EventsActivity.EVENT_ID_EXTRA) ?: "" }
     private val loader: Loader by lazy { Loader(this, this.window?.decorView as ViewGroup) }
 
     private var dialogView: AlertDialog? = null
