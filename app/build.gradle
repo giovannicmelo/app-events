@@ -28,7 +28,6 @@ dependencies {
 
     implementation dependencies.kotlin
     implementation dependencies.support
-    implementation dependencies.koin.android
     implementation dependencies.play
 
     testImplementation testDependencies.junit

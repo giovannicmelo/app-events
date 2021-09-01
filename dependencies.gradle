@@ -18,6 +18,7 @@ ext {
     lifecycleVersion = '2.2.0'
     materialVersion = '1.1.0'
     mockitoVersion = '2.2.0'
+    mockitoInlineVersion = '2.13.0'
     okhttpVersion = '3.12.2'
     playServicesVersion = '17.0.0'
     retrofit2Version = '2.6.2'
@@ -54,6 +55,7 @@ ext {
             lifecycle               : [
                     "extensions"    : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
                     "viewmodel"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+                    "livedata"      : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
             ],
             material                : "com.google.android.material:material:$materialVersion",
             okhttp3                 : [
@@ -76,5 +78,6 @@ ext {
             junitExt                : "androidx.test.ext:junit:$junitExtVersion",
             junit                   : "junit:junit:$junitVersion",
             mockitokotlin           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoVersion",
+            mockitoinline           : "org.mockito:mockito-inline:$mockitoInlineVersion"
     ]
 }

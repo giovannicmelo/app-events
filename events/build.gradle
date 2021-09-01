@@ -22,16 +22,11 @@ dependencies {
     implementation dependencies.support
     implementation dependencies.constraintlayout
     implementation dependencies.coil
-    implementation dependencies.lifecycle.extensions
-    implementation dependencies.lifecycle.viewmodel
-    implementation dependencies.koin.android
-    implementation dependencies.koin.viewmodel
     implementation dependencies.play
-    implementation dependencies.retrofit2.retrofit
-    implementation dependencies.gson
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockitokotlin
+    testImplementation testDependencies.mockitoinline
     testImplementation testDependencies.coretesting
     testImplementation testDependencies.coroutines
     androidTestImplementation testDependencies.junitExt

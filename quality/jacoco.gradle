@@ -31,8 +31,11 @@ def fileFilter = [
         '**/fragments/**/*.*',
         '**/local/**/*.*',
         '**/models/**/*.*',
+        '**/domain/**/*.*',
         '**/paging/**/*.*',
         '**/shared/**/*.*',
+        '**/mappers/**/*.*',
+        '**/framework/utils/*.*',
         '**/AndroidExtensionsKt.*',
         '**/view/**/*.*',
         '**/views/**/*.*',
@@ -44,7 +47,7 @@ def fileFilter = [
         '**/*Application.*',
         '**/*SingleLiveEvent.*',
         '**/*ViewState*.*',
-        '**/core/command/**/*.*',
+        '**/core/ui/**/*.*',
         '**/core/data/network/**/*.*',
 ]
 
