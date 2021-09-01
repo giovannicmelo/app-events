@@ -33,19 +33,6 @@ class FormatterExtensionsTest {
     }
 
     @Test
-    fun `Timestamp to day of week, when it is passed a zero value, then returns a default day`() {
-        // ARRANGE
-        val expectedDay = "31"
-        val expectedTimestamp = 0L
-
-        // ACT
-        val actualDayOfWeek = expectedTimestamp.timestampToDayOfMonth()
-
-        // ASSERT
-        Assert.assertEquals(expectedDay, actualDayOfWeek)
-    }
-
-    @Test
     fun `Timestamp to day of week, when it is passed a null value, then returns null`() {
         // ARRANGE
         val expectedTimestamp: Long? = null
@@ -62,19 +49,6 @@ class FormatterExtensionsTest {
         // ARRANGE
         val expectedMonth = "AGO"
         val expectedTimestamp = 1534784400000
-
-        // ACT
-        val actualMonth = expectedTimestamp.timestampToShortMonth()
-
-        // ASSERT
-        Assert.assertEquals(expectedMonth, actualMonth)
-    }
-
-    @Test
-    fun `Timestamp to short month, when it is passed a zero value, then returns a default month`() {
-        // ARRANGE
-        val expectedMonth = "DEZ"
-        val expectedTimestamp = 0L
 
         // ACT
         val actualMonth = expectedTimestamp.timestampToShortMonth()
@@ -109,19 +83,6 @@ class FormatterExtensionsTest {
     }
 
     @Test
-    fun `Timestamp to year, when it is passed a zero value, then returns a default year`() {
-        // ARRANGE
-        val expectedYear = "1969"
-        val expectedTimestamp = 0L
-
-        // ACT
-        val actualYear = expectedTimestamp.timestampToYear()
-
-        // ASSERT
-        Assert.assertEquals(expectedYear, actualYear)
-    }
-
-    @Test
     fun `Timestamp to year, when it is passed a null value, then returns null`() {
         // ARRANGE
         val expectedTimestamp: Long? = null
@@ -138,19 +99,6 @@ class FormatterExtensionsTest {
         // ARRANGE
         val expectedDateFull = "20 de agosto de 2018"
         val expectedTimestamp = 1534784400000
-
-        // ACT
-        val actualDateFull = expectedTimestamp.timestampToDateFull()
-
-        // ASSERT
-        Assert.assertEquals(expectedDateFull, actualDateFull)
-    }
-
-    @Test
-    fun `Timestamp to date full, when it is passed a zero value, then returns a default date`() {
-        // ARRANGE
-        val expectedDateFull = "31 de dezembro de 1969"
-        val expectedTimestamp = 0L
 
         // ACT
         val actualDateFull = expectedTimestamp.timestampToDateFull()
