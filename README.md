@@ -1,6 +1,6 @@
 # Eventos
 
-[![Kotlin](https://img.shields.io/badge/version-1.0.0-orange.svg)]()
+[![Kotlin](https://img.shields.io/badge/version-2.0.0-orange.svg)]()
 [![Kotlin](https://img.shields.io/badge/kotlin-powered-green.svg)]()
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
