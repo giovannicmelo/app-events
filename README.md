@@ -3,6 +3,7 @@
 [![Kotlin](https://img.shields.io/badge/version-2.0.0-orange.svg)]()
 [![Kotlin](https://img.shields.io/badge/kotlin-powered-green.svg)]()
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![Build](https://github.com/giovannicmelo/app-events/actions/workflows/build.yml/badge.svg?branch=dev&event=push)](https://github.com/giovannicmelo/app-events/actions/workflows/build.yml)
 
 Este projeto é um aplicativo que renderiza uma lista de eventos e seus detalhes a partir de um serviço REST.
 
