@@ -9,7 +9,6 @@ import br.com.giovannicampos.events.framework.api.EventsApi
 import br.com.giovannicampos.events.interactors.DoCheckIn
 import br.com.giovannicampos.events.interactors.FetchAllEvents
 import br.com.giovannicampos.events.interactors.GetEventDetails
-import br.com.giovannicampos.events.interactors.UseCase
 import br.com.giovannicampos.events.presentation.viewmodels.EventDetailsViewModel
 import br.com.giovannicampos.events.presentation.viewmodels.EventsListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -29,9 +28,9 @@ private val eventsModules: Module = module {
     /**
      * Use cases
      */
-    factory<UseCase> { DoCheckIn(repository = get()) }
-    factory<UseCase> { FetchAllEvents(repository = get()) }
-    factory<UseCase> { GetEventDetails(repository = get()) }
+    factory { DoCheckIn(repository = get()) }
+    factory { FetchAllEvents(repository = get()) }
+    factory { GetEventDetails(repository = get()) }
 
     /**
      * View models
