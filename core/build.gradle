@@ -1,16 +1,36 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply from: "$rootProject.projectDir/base-build.gradle"
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
 
 android {
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
+        versionCode appVersion.versionCode
+        versionName appVersion.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
 
         //buildConfigField "String", "BASE_URL", "\"http://5b840ba5db24a100142dcd8c.mockapi.io/api/\""
         buildConfigField "String", "BASE_URL", "\"https://demo4147702.mockable.io/\""
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -24,18 +44,17 @@ dependencies {
     api dependencies.support
     api dependencies.appcompat
     api dependencies.ktx
-    api dependencies.lifecycle.extensions
     api dependencies.lifecycle.viewmodel
     api dependencies.lifecycle.livedata
     api dependencies.koin.core
     api dependencies.koin.android
-    api dependencies.koin.viewmodel
     api dependencies.retrofit2.retrofit
     api dependencies.retrofit2.convertergson
     api dependencies.okhttp3.okhttp
     api dependencies.okhttp3.logging
     api dependencies.gson
     api dependencies.coroutinesadapter
+    api dependencies.databinding
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockitokotlin

@@ -1,21 +1,52 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply from: "$rootProject.projectDir/base-build.gradle"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'jacoco'
+}
+
+apply {
+    from(rootProject.file('quality/ktlint.gradle'))
+    from(rootProject.file('quality/jacoco.gradle'))
+}
 
 android {
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
         applicationId "br.com.giovannicampos.appevents"
-
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
         versionCode appVersion.versionCode
         versionName appVersion.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 

@@ -1,7 +1,5 @@
 package br.com.giovannicampos.events.data
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import br.com.giovannicampos.events.CoroutinesTestRule
 import br.com.giovannicampos.events.EventsTestUtils
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
@@ -11,7 +9,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -19,12 +16,6 @@ class EventRepositoryTest {
 
     private lateinit var dataSourceMock: EventDataSource
     private lateinit var repository: EventRepository
-
-    @JvmField @Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    @get:Rule
-    var coroutinesTestRule = CoroutinesTestRule()
 
     private fun makeUnit(): Unit? = null
 

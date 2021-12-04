@@ -24,7 +24,7 @@ fun Long.timestampToDayOfMonth(): String {
 fun Long.timestampToShortMonth(): String {
     val locale = Locale("pt", "BR")
     val formatter = SimpleDateFormat("MMM", locale)
-    return formatter.format(Date(this)).toUpperCase(locale)
+    return formatter.format(Date(this)).uppercase(locale)
 }
 
 fun Long.timestampToYear(): String {
@@ -36,5 +36,5 @@ fun Long.timestampToYear(): String {
 fun Long.timestampToDateFull(): String {
     val locale = Locale("pt", "BR")
     val formatter = SimpleDateFormat("dd 'de' MMMM 'de' yyyy", locale)
-    return formatter.format(Date(this)).toLowerCase(locale)
+    return formatter.format(Date(this)).lowercase(locale)
 }

@@ -4,7 +4,9 @@ import android.app.Application
 import br.com.giovannicampos.core.di.getCoreModules
 import br.com.giovannicampos.events.di.getEventsModules
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.core.module.Module
 
 class EventsApplication : Application() {
@@ -13,7 +15,7 @@ class EventsApplication : Application() {
         super.onCreate()
 
         startKoin {
-            printLogger()
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@EventsApplication)
             modules(getAppModules())
         }

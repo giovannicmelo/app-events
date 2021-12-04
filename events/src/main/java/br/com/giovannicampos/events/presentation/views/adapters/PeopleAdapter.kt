@@ -34,7 +34,7 @@ class PeopleAdapter(private val people: List<Person>)
                     transformations(CircleCropTransformation())
                 }
                 tvPersonName.text = person.name
-                if (person.name.isNotEmpty()) tvPersonInitial.text = person.name[0].toUpperCase().toString()
+                if (person.name.isNotEmpty()) tvPersonInitial.text = person.name[0].uppercase()
             }
         }
     }

@@ -1,34 +1,35 @@
 ext {
 
-    kotlinVersion = '1.3.72'
-    buildTools = '3.6.3'
+    kotlinVersion = '1.6.0'
+    buildTools = '7.0.3'
 
-    appCompatVersion = '1.1.0'
+    appCompatVersion = '1.4.0'
     archCoreVersion = '2.1.0'
     coilVersion = '0.9.5'
-    constraintLayoutVersion = '1.1.3'
+    constraintLayoutVersion = '2.1.2'
     coroutinesAdapterVersion = '0.9.2'
     coroutinesVersion = '1.3.4'
-    espressoVersion = '3.2.0'
-    gsonVersion = '2.8.5'
-    junitExtVersion = '1.1.1'
-    junitVersion = '4.13'
-    koinVersion = '2.1.3'
-    ktxVersion = '1.2.0'
-    lifecycleVersion = '2.2.0'
-    materialVersion = '1.1.0'
+    databindingVersion = '7.0.3'
+    espressoVersion = '3.4.0'
+    gsonVersion = '2.8.9'
+    junitExtVersion = '1.1.3'
+    junitVersion = '4.13.2'
+    koinVersion = '3.1.4'
+    ktxVersion = '1.7.0'
+    lifecycleVersion = '2.4.0'
+    materialVersion = '1.4.0'
     mockitoVersion = '2.2.0'
-    mockitoInlineVersion = '2.13.0'
-    okhttpVersion = '3.12.2'
-    playServicesVersion = '17.0.0'
-    retrofit2Version = '2.6.2'
+    mockitoInlineVersion = '4.1.0'
+    okhttpVersion = '5.0.0-alpha.3'
+    playServicesVersion = '18.0.0'
+    retrofit2Version = '2.9.0'
     supportVersion = '1.0.0'
 
     buildConfig = [
 
-            minSdk                  : 19,
-            targetSdk               : 29,
-            compileSdk              : 29,
+            minSdk                  : 24,
+            targetSdk               : 31,
+            compileSdk              : 31,
             buildToolsVersion       : "29.0.3"
     ]
 
@@ -44,16 +45,15 @@ ext {
             coil                    : "io.coil-kt:coil:$coilVersion",
             constraintlayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             coroutinesadapter       : "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutinesAdapterVersion",
+            databinding             : "androidx.databinding:databinding-runtime:$databindingVersion",
             gson                    : "com.google.code.gson:gson:$gsonVersion",
             koin                    : [
-                    "core"          : "org.koin:koin-core:$koinVersion",
-                    "android"       : "org.koin:koin-android:$koinVersion",
-                    "viewmodel"     : "org.koin:koin-androidx-viewmodel:$koinVersion",
+                    "core"          : "io.insert-koin:koin-core:$koinVersion",
+                    "android"       : "io.insert-koin:koin-android:$koinVersion",
             ],
             kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
             ktx                     : "androidx.core:core-ktx:$ktxVersion",
             lifecycle               : [
-                    "extensions"    : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
                     "viewmodel"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
                     "livedata"      : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
             ],
