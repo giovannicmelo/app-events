@@ -56,7 +56,7 @@ class RetrofitEventDataSourceTest {
     @Test
     fun postCheckIn() = runBlockingTest {
         val person = PersonMapper.toModel(EventsTestUtils.getPerson())
-        val expected = makeVoid()
+        val expected = Unit
         val response = Response.success(expected)
         whenever(apiMock.postCheckIn(person)).thenReturn(response)
 
