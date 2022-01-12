@@ -19,6 +19,17 @@ android {
         //buildConfigField "String", "BASE_URL", "\"http://5b840ba5db24a100142dcd8c.mockapi.io/api/\""
         buildConfigField "String", "BASE_URL", "\"https://demo4147702.mockable.io/\""
     }
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        mock.initWith(debug)
+    }
+
     buildFeatures {
         viewBinding true
     }

@@ -2,10 +2,11 @@ package br.com.giovannicampos.events.mappers
 
 import br.com.giovannicampos.events.domain.Person
 import br.com.giovannicampos.events.framework.models.EventModel
+import br.com.giovannicampos.events.framework.models.PersonModel
 
 object PersonMapper {
 
-    fun toModel(entity: Person) = EventModel.PersonModel(
+    fun toModel(entity: Person) = PersonModel(
         entity.id,
         entity.eventId,
         entity.name,
@@ -13,7 +14,7 @@ object PersonMapper {
         entity.picture
     )
 
-    fun toEntity(model: EventModel.PersonModel) = Person(
+    fun toEntity(model: PersonModel) = Person(
         model.id,
         model.eventId,
         model.name,
