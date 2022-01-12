@@ -1,6 +1,7 @@
 package br.com.giovannicampos.events.framework.api
 
 import br.com.giovannicampos.events.framework.models.EventModel
+import br.com.giovannicampos.events.framework.models.PersonModel
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,5 +21,5 @@ interface EventsApi {
 
     @Headers("Content-Type: application/json")
     @POST("checkin")
-    suspend fun postCheckIn(@Body person: EventModel.PersonModel): Response<Void>
+    suspend fun postCheckIn(@Body person: PersonModel): Response<Unit>
 }

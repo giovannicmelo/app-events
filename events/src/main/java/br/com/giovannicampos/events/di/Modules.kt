@@ -1,11 +1,13 @@
 package br.com.giovannicampos.events.di
 
 import br.com.giovannicampos.core.data.network.ServiceClient
+import br.com.giovannicampos.events.BuildConfig
 import br.com.giovannicampos.events.data.EventDataSource
 import br.com.giovannicampos.events.data.EventRepository
 import br.com.giovannicampos.events.data.EventRepositoryContract
 import br.com.giovannicampos.events.framework.RetrofitEventDataSource
 import br.com.giovannicampos.events.framework.api.EventsApi
+import br.com.giovannicampos.events.framework.api.EventsApiMock
 import br.com.giovannicampos.events.interactors.DoCheckIn
 import br.com.giovannicampos.events.interactors.FetchAllEvents
 import br.com.giovannicampos.events.interactors.GetEventDetails
@@ -17,7 +19,10 @@ import org.koin.dsl.module
 
 private val eventsModules: Module = module {
 
-    single { ServiceClient.getServiceClient(apiClass = EventsApi::class.java) }
+    single {
+        if (BuildConfig.BUILD_TYPE == "mock") EventsApiMock()
+        else ServiceClient.getServiceClient(apiClass = EventsApi::class.java)
+    }
 
     /**
      * Data access
