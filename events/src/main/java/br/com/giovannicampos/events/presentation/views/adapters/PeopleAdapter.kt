@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovannicampos.events.databinding.ItemPersonBinding
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.entities.Person
 import coil.api.load
 import coil.transform.CircleCropTransformation
 

@@ -1,10 +1,10 @@
 package br.com.giovannicampos.events.presentation.viewmodels
 
 import br.com.giovannicampos.core.ui.BaseViewModel
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.entities.Person
 import br.com.giovannicampos.events.framework.utils.request
-import br.com.giovannicampos.events.interactors.DoCheckIn
-import br.com.giovannicampos.events.interactors.GetEventDetails
+import br.com.giovannicampos.events.domain.usecases.DoCheckIn
+import br.com.giovannicampos.events.domain.usecases.GetEventDetails
 
 class EventDetailsViewModel(
     private val getEventDetails: GetEventDetails,

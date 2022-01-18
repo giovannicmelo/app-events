@@ -1,7 +1,7 @@
-package br.com.giovannicampos.events.data
+package br.com.giovannicampos.events.domain.data
 
-import br.com.giovannicampos.events.domain.Event
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.entities.Event
+import br.com.giovannicampos.events.domain.entities.Person
 
 class EventRepository(private val dataSource: EventDataSource) : EventRepositoryContract {
 

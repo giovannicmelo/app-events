@@ -40,14 +40,14 @@ class EventsActivity : AppCompatActivity() {
     }
 
     private fun configureObservers() {
-        viewModel.snackMessage.observe(this, Observer { message ->
+        viewModel.snackMessage.observe(this, { message ->
             showSnackMessage(message)
         })
     }
 
     private fun loadEventList() {
         if (isConnected()) {
-            viewModel.getEventsList().observe(this, Observer { state ->
+            viewModel.getEventsList().observe(this, { state ->
                 when (state) {
                     is State.LoadingState -> {
                         loader.start()

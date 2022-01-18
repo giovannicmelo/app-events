@@ -1,10 +1,10 @@
 package br.com.giovannicampos.events.framework
 
 import br.com.giovannicampos.events.EventsTestUtils
-import br.com.giovannicampos.events.data.EventDataSource
+import br.com.giovannicampos.events.domain.data.EventDataSource
 import br.com.giovannicampos.events.framework.api.EventsApi
-import br.com.giovannicampos.events.mappers.EventMapper
-import br.com.giovannicampos.events.mappers.PersonMapper
+import br.com.giovannicampos.events.framework.mappers.EventMapper
+import br.com.giovannicampos.events.framework.mappers.PersonMapper
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify

@@ -1,7 +1,8 @@
 package br.com.giovannicampos.events.interactors
 
 import br.com.giovannicampos.events.EventsTestUtils
-import br.com.giovannicampos.events.data.EventRepositoryContract
+import br.com.giovannicampos.events.domain.data.EventRepositoryContract
+import br.com.giovannicampos.events.domain.usecases.GetEventDetails
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi

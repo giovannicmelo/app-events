@@ -1,4 +1,4 @@
-package br.com.giovannicampos.events.domain
+package br.com.giovannicampos.events.domain.entities
 
 data class Event(
     val id: String = "",

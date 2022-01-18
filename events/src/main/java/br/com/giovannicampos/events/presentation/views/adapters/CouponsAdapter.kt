@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.giovannicampos.events.R
 import br.com.giovannicampos.events.databinding.ItemCouponBinding
-import br.com.giovannicampos.events.domain.Coupon
+import br.com.giovannicampos.events.domain.entities.Coupon
 
 class CouponsAdapter(private val coupons: List<Coupon>)
     : RecyclerView.Adapter<CouponsAdapter.CouponsViewHolder>() {

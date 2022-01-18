@@ -1,6 +1,6 @@
-package br.com.giovannicampos.events.mappers
+package br.com.giovannicampos.events.framework.mappers
 
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.entities.Person
 import br.com.giovannicampos.events.framework.models.EventModel
 
 object PersonMapper {

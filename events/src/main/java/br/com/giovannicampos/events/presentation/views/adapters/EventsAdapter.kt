@@ -12,7 +12,7 @@ import br.com.giovannicampos.core.utils.timestampToShortMonth
 import br.com.giovannicampos.core.utils.timestampToYear
 import br.com.giovannicampos.events.R
 import br.com.giovannicampos.events.databinding.ItemEventBinding
-import br.com.giovannicampos.events.domain.Event
+import br.com.giovannicampos.events.domain.entities.Event
 import coil.api.load
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation

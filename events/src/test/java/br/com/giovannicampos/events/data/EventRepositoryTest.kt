@@ -1,6 +1,8 @@
 package br.com.giovannicampos.events.data
 
 import br.com.giovannicampos.events.EventsTestUtils
+import br.com.giovannicampos.events.domain.data.EventDataSource
+import br.com.giovannicampos.events.domain.data.EventRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify

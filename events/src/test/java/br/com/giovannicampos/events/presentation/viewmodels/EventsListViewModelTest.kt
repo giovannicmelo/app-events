@@ -5,9 +5,9 @@ import androidx.lifecycle.Observer
 import br.com.giovannicampos.core.utils.getOrAwaitValue
 import br.com.giovannicampos.events.CoroutinesTestRule
 import br.com.giovannicampos.events.EventsTestUtils
-import br.com.giovannicampos.events.domain.Event
+import br.com.giovannicampos.events.domain.entities.Event
 import br.com.giovannicampos.events.framework.utils.State
-import br.com.giovannicampos.events.interactors.FetchAllEvents
+import br.com.giovannicampos.events.domain.usecases.FetchAllEvents
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify

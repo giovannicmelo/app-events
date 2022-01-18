@@ -1,14 +1,14 @@
 package br.com.giovannicampos.events.di
 
 import br.com.giovannicampos.core.data.network.ServiceClient
-import br.com.giovannicampos.events.data.EventDataSource
-import br.com.giovannicampos.events.data.EventRepository
-import br.com.giovannicampos.events.data.EventRepositoryContract
+import br.com.giovannicampos.events.domain.data.EventDataSource
+import br.com.giovannicampos.events.domain.data.EventRepository
+import br.com.giovannicampos.events.domain.data.EventRepositoryContract
 import br.com.giovannicampos.events.framework.RetrofitEventDataSource
 import br.com.giovannicampos.events.framework.api.EventsApi
-import br.com.giovannicampos.events.interactors.DoCheckIn
-import br.com.giovannicampos.events.interactors.FetchAllEvents
-import br.com.giovannicampos.events.interactors.GetEventDetails
+import br.com.giovannicampos.events.domain.usecases.DoCheckIn
+import br.com.giovannicampos.events.domain.usecases.FetchAllEvents
+import br.com.giovannicampos.events.domain.usecases.GetEventDetails
 import br.com.giovannicampos.events.presentation.viewmodels.EventDetailsViewModel
 import br.com.giovannicampos.events.presentation.viewmodels.EventsListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

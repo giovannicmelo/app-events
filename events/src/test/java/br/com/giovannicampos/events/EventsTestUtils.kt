@@ -1,8 +1,8 @@
 package br.com.giovannicampos.events
 
-import br.com.giovannicampos.events.domain.Coupon
-import br.com.giovannicampos.events.domain.Event
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.entities.Coupon
+import br.com.giovannicampos.events.domain.entities.Event
+import br.com.giovannicampos.events.domain.entities.Person
 
 object EventsTestUtils {
 

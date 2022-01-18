@@ -1,7 +1,7 @@
 ext {
 
-    kotlinVersion = '1.6.0'
-    buildTools = '7.0.3'
+    kotlinVersion = '1.5.31'
+    buildTools = '7.0.4'
 
     appCompatVersion = '1.4.0'
     archCoreVersion = '2.1.0'

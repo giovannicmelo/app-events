@@ -1,11 +1,11 @@
 package br.com.giovannicampos.events.framework
 
-import br.com.giovannicampos.events.data.EventDataSource
-import br.com.giovannicampos.events.domain.Event
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.data.EventDataSource
+import br.com.giovannicampos.events.domain.entities.Event
+import br.com.giovannicampos.events.domain.entities.Person
 import br.com.giovannicampos.events.framework.api.EventsApi
-import br.com.giovannicampos.events.mappers.EventMapper
-import br.com.giovannicampos.events.mappers.PersonMapper
+import br.com.giovannicampos.events.framework.mappers.EventMapper
+import br.com.giovannicampos.events.framework.mappers.PersonMapper
 
 class RetrofitEventDataSource(private val api: EventsApi) : EventDataSource {
 

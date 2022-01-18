@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.giovannicampos.core.ui.Loader
 import br.com.giovannicampos.core.utils.getAddresses
@@ -20,7 +19,7 @@ import br.com.giovannicampos.core.utils.toCurrency
 import br.com.giovannicampos.events.R
 import br.com.giovannicampos.events.databinding.ActivityEventDetailBinding
 import br.com.giovannicampos.events.databinding.DialogCheckInBinding
-import br.com.giovannicampos.events.domain.Event
+import br.com.giovannicampos.events.domain.entities.Event
 import br.com.giovannicampos.events.framework.utils.State
 import br.com.giovannicampos.events.presentation.viewmodels.EventDetailsViewModel
 import br.com.giovannicampos.events.presentation.views.adapters.CouponsAdapter
@@ -68,7 +67,7 @@ class EventDetailActivity : AppCompatActivity() {
     private fun loadEventDetails() {
         if (isConnected()) {
             if (intent.hasExtra(EventsActivity.EVENT_ID_EXTRA)) {
-                viewModel.getDetails(eventIdExtra).observe(this, Observer { state ->
+                viewModel.getDetails(eventIdExtra).observe(this, { state ->
                     when (state) {
                         is State.LoadingState -> {
                             loader.start()
@@ -109,7 +108,7 @@ class EventDetailActivity : AppCompatActivity() {
     }
 
     private fun configureObservers() {
-        viewModel.snackMessage.observe(this, Observer { message ->
+        viewModel.snackMessage.observe(this, { message ->
             showSnackMessage(message)
         })
     }
@@ -200,7 +199,7 @@ class EventDetailActivity : AppCompatActivity() {
     }
 
     private fun doCheckIn(eventId: String, name: String, email: String) {
-        viewModel.doCheckIn(eventId, name, email).observe(this, Observer { state ->
+        viewModel.doCheckIn(eventId, name, email).observe(this, { state ->
             when (state) {
                 is State.DataState -> {
                     viewModel.showSnackMessage(getString(R.string.check_in_successfully))

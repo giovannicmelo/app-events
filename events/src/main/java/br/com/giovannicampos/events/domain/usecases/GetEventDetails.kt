@@ -1,6 +1,6 @@
-package br.com.giovannicampos.events.interactors
+package br.com.giovannicampos.events.domain.usecases
 
-import br.com.giovannicampos.events.data.EventRepositoryContract
+import br.com.giovannicampos.events.domain.data.EventRepositoryContract
 
 class GetEventDetails(private val repository: EventRepositoryContract) : UseCase() {
 

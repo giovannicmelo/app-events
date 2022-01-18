@@ -1,8 +1,8 @@
-package br.com.giovannicampos.events.mappers
+package br.com.giovannicampos.events.framework.mappers
 
-import br.com.giovannicampos.events.domain.Coupon
-import br.com.giovannicampos.events.domain.Event
-import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.domain.entities.Coupon
+import br.com.giovannicampos.events.domain.entities.Event
+import br.com.giovannicampos.events.domain.entities.Person
 import br.com.giovannicampos.events.framework.models.EventModel
 
 object EventMapper {
