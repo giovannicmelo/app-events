@@ -1,7 +1,7 @@
 package br.com.giovannicampos.appevents
 
 import android.app.Application
-import br.com.giovannicampos.core.di.getBaseModules
+import br.com.giovannicampos.core.di.getCoreModules
 import br.com.giovannicampos.events.di.getEventsModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -20,7 +20,7 @@ class EventsApplication : Application() {
     }
 
     private fun getAppModules(): List<Module> = mutableListOf<Module>().also {
-        it.addAll(getBaseModules())
+        it.addAll(getCoreModules())
         it.addAll(getEventsModules())
     }
 }

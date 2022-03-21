@@ -1,16 +1,28 @@
 # Eventos
 
-[![Kotlin](https://img.shields.io/badge/version-1.0.0-orange.svg)]()
+[![Kotlin](https://img.shields.io/badge/version-2.0.0-orange.svg)]()
 [![Kotlin](https://img.shields.io/badge/kotlin-powered-green.svg)]()
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![Build](https://github.com/giovannicmelo/app-events/actions/workflows/build.yml/badge.svg?branch=dev&event=push)](https://github.com/giovannicmelo/app-events/actions/workflows/build.yml)
 
 Este projeto é um aplicativo que renderiza uma lista de eventos e seus detalhes a partir de um serviço REST.
 
 ## Arquitetura usada
-O projeto citado faz uso da arquitetura **MVVM**, conforme recomendações da Google
-[![final-architecture.png](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png "final-architecture.png")](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png "final-architecture.png")
+O projeto citado faz uso da **Clean Architecture**, que tem como objetivo separar responsabilidades, seguir os princípios SOLID e simplificar a manutenção do código.
+
+![https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg "CleanArchitecture.jpg")](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg "CleanArchitecture.jpg")
+
 Mais informações sobre a arquitetura poderão ser consultadas em:
-[Guia para a arquitetura do app - Android Developers](https://developer.android.com/jetpack/docs/guide "Guia para a arquitetura do app - Android Developers")
+[The Clean Architecture - The Clean Code Blog (Robert C. Martin)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html "The Clean Architecture - The Clean Code Blog (Robert C. Martin)")
+
+## Estrutura da arquitetura
+- **domain**: onde são inseridas as entidades que representam a regra de negócio da aplicação;
+- **data**: abstrações e contratos que representam as ações core da aplicação;
+- **interactors** (ou use cases): classes de casos de usos que representam as interações do usuário;
+- **framework**: implementações da camada *data*, que servem para realizar as conexões de dados (remotos ou locais);
+- **mappers**: adaptadores e conversores;
+- **presentation**: camada que implementa a **MVVM** (Model-View-ViewModel), onde é realizada a comunicação entre interface do usuário e os casos de usos;
+- **di**: camada usada para injeção de dependências.
 
 ## Bibliotecas utilizadas
 - **Material**: componentes que seguem as guidelines da Material Design;
