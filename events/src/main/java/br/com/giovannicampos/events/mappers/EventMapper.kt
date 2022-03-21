@@ -3,7 +3,9 @@ package br.com.giovannicampos.events.mappers
 import br.com.giovannicampos.events.domain.Coupon
 import br.com.giovannicampos.events.domain.Event
 import br.com.giovannicampos.events.domain.Person
+import br.com.giovannicampos.events.framework.models.CouponModel
 import br.com.giovannicampos.events.framework.models.EventModel
+import br.com.giovannicampos.events.framework.models.PersonModel
 
 object EventMapper {
 
@@ -17,7 +19,7 @@ object EventMapper {
         latitude = entity.latitude,
         longitude = entity.longitude,
         listPersons = entity.listPersons.map {
-            EventModel.PersonModel(
+            PersonModel(
                 it.id,
                 it.eventId,
                 it.name,
@@ -26,7 +28,7 @@ object EventMapper {
             )
         },
         listCoupons = entity.listCoupons.map {
-            EventModel.CouponModel(
+            CouponModel(
                 it.id,
                 it.eventId,
                 it.discount

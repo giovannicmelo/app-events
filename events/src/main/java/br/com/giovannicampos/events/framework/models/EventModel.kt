@@ -14,18 +14,27 @@ data class EventModel(
     @SerializedName("people") val listPersons: List<PersonModel> = listOf(),
     @SerializedName("coupons") val listCoupons: List<CouponModel> = listOf()
 ) {
-
-    data class CouponModel(
-        @SerializedName("id") val id: String = "",
-        @SerializedName("eventId") val eventId: String = "",
-        @SerializedName("discount") val discount: Int = 0
-    )
-
-    data class PersonModel(
-        @SerializedName("id") val id: String = "",
-        @SerializedName("eventId") val eventId: String = "",
-        @SerializedName("name") val name: String = "",
-        @SerializedName("email") val email: String = "",
-        @SerializedName("picture") val picture: String = ""
-    )
+    companion object {
+        fun mock() = EventModel(
+            id = "1",
+            title = "São silvestre",
+            price = 20.0,
+            latitude = -23.556090,
+            longitude = -46.537769,
+            image = "https://upload.wikimedia.org/wikipedia/pt/c/c9/Favicon-ss.png",
+            description = "Corrida de Rua",
+            date = 100000,
+            listPersons = listOf(
+                PersonModel.mock(),
+                PersonModel.mock().copy(
+                    id = "2",
+                    name = "Giovanni Campos",
+                    email = "giovanni@abc.com.br"
+                )
+            ),
+            listCoupons = listOf(
+                CouponModel.mock()
+            )
+        )
+    }
 }
