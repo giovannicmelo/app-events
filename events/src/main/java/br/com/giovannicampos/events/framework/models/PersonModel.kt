@@ -8,8 +8,8 @@ data class PersonModel(
     @SerializedName("name") val name: String = "",
     @SerializedName("email") val email: String = "",
     @SerializedName("picture") val picture: String = ""
-){
-    companion object{
+) {
+    companion object {
         fun mock() = PersonModel(
             id = "21",
             eventId = "32",
